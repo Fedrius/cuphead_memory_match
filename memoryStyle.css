@@ -1,0 +1,57 @@
+/*body {*/
+    /*background: url(membackground.jpg) no-repeat center center fixed;*/
+    /*background-size: cover;*/
+/*}*/
+
+.headerContainer {
+    border: 2px solid black;
+    height: 100px;
+}
+
+.statsContainer {
+    text-align: center;
+    border: 2px solid red;
+    height: 80vh;
+    width: 15vw;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+
+.insideStatsContainer {
+
+}
+
+#game-area {
+    border: 2px solid blue;
+    height: 80vh;
+    min-width: 60vw;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+h1 {
+    text-align: center;
+}
+
+.label {
+    color: black;
+}
+
+.card {
+    height: 180px;
+    width: 130px;
+    border: 1px solid crimson;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 15px;
+    float: left;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.front, .back {
+    height: 100%;
+    position: absolute;
+}
+
