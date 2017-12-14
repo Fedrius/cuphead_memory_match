@@ -1,7 +1,8 @@
-/*body {*/
+body {
     /*background: url(membackground.jpg) no-repeat center center fixed;*/
-    /*background-size: cover;*/
-/*}*/
+    background: gainsboro;
+    background-size: cover;
+}
 
 .headerContainer {
     border: 2px solid black;
@@ -10,7 +11,7 @@
 
 .statsContainer {
     text-align: center;
-    border: 2px solid red;
+    border: 2px solid black;
     height: 80vh;
     width: 15vw;
     margin-top: 20px;
@@ -19,11 +20,11 @@
 
 
 .insideStatsContainer {
-
+    border: 2px solid black;
 }
 
 #game-area {
-    border: 2px solid blue;
+    border: 2px solid black;
     height: 80vh;
     min-width: 60vw;
     margin-top: 20px;
