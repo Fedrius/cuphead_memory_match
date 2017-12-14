@@ -3,10 +3,8 @@ $(document).ready(initializeApp);
 var firstCardClicked = 0;
 var secondCardClicked = 0;
 var matchCounter = 0;
-var totalPossibleMatches = 3;
-
+var totalPossibleMatches = 9;
 var storedCard = null;
-var clickHandleOffandOn = null;
 
 function initializeApp() {
     $('.card').click(cardClicked);
@@ -25,7 +23,6 @@ function cardClicked() {
         firstCardClicked = $(matchCard).find('.front').attr('src');
         $(this).off();
         storedCard = cardHideBack;
-        clickHandleOffandOn = cardHideBack;
         return;
     }
 
@@ -47,15 +44,21 @@ function cardClicked() {
                 console.log('WON DA GAME');
             }
         } else {
-            $(this).off();
+            $('.card').off();
             setTimeout(function(){
+
                 $(storedCard).find('.back').show();
                 $(cardHideBack).find('.back').show();
+
+                $('.card').on('click', cardClicked);
+
                 storedCard = null;
+
             }, 2000);
             firstCardClicked = 0;
             secondCardClicked = 0;
             console.log('work??')
+
         }
     }
 }
