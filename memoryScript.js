@@ -1,14 +1,44 @@
 $(document).ready(initializeApp);
 
-var firstCardClicked = 0;
-var secondCardClicked = 0;
-var matchCounter = 0;
-var totalPossibleMatches = 9;
-var storedCard = null;
+var firstCardClicked = 0,
+    secondCardClicked = 0,
+    matchCounter = 0,
+    totalPossibleMatches = 9,
+    storedCard = null,
+    matches = 0,
+    attempts = 0,
+    accuracy = 0;
+    gamesPlayed = 9000;
 
 function initializeApp() {
     $('.card').click(cardClicked);
+    displayStats();
+    $('.reset').click(resetButton);
 }
+
+function displayStats() {
+    $('.games-played .value').text(gamesPlayed);
+    $('.attempts .value').text(attempts);
+
+    if(accuracy === 0){
+        accuracy = 0 + '%';
+    }else {
+        accuracy=  accuracy.toFixed(2) + '%';
+    }
+    $('.accuracy .value').text(accuracy);
+}
+
+function resetStats() {
+    matches = 0;
+    attempts = 0;
+    displayStats();
+}
+
+function resetButton() {
+    gamesPlayed++;
+    resetStats()
+}
+
 
 function cardClicked() {
 
@@ -27,9 +57,13 @@ function cardClicked() {
     }
 
     if (firstCardClicked !== 0) {
+        attempts++;
+        displayStats();
         secondCardClicked = $(matchCard).find('.front').attr('src');
         if (secondCardClicked === firstCardClicked) {
             matchCounter++;
+            matches++;
+            displayStats();
             $(this).off();
             console.log('MATCHED CARDS!');
             storedCard = null;
