@@ -6,60 +6,60 @@ var matchCounter = 0;
 var totalPossibleMatches = 3;
 
 var storedCard = null;
-
 var clickHandleOffandOn = null;
 
 function initializeApp() {
     $('.card').click(cardClicked);
 }
 
-
 function cardClicked() {
 
-    var cardHide = $(this).find('.back').hide();
-    console.log('hidden: ',cardHide);
+    var cardHideBack = this;
+    $(cardHideBack).find('.back').hide();
+    console.log('cardhidden', cardHideBack);
 
-    var matchCard = $(this).find('.front').attr('src');
-    console.log('matchcard:',matchCard);
-    console.log('firstcardclicked:',firstCardClicked);
+    var matchCard = this;
+    console.log('matchcardclicked', $(matchCard).find('.front').attr('src'));
 
-    if(firstCardClicked === 0){
-        firstCardClicked = matchCard;
-        storedCard = cardHide;
-        clickHandleOffandOn = $(this).off();
+    if (firstCardClicked === 0) {
+        firstCardClicked = $(matchCard).find('.front').attr('src');
+        $(this).off();
+        storedCard = cardHideBack;
+        clickHandleOffandOn = cardHideBack;
         return;
     }
 
-    if(firstCardClicked !== 0){
-        secondCardClicked = matchCard;
-
-        if(secondCardClicked !== firstCardClicked){
+    if (firstCardClicked !== 0) {
+        secondCardClicked = $(matchCard).find('.front').attr('src');
+        if (secondCardClicked === firstCardClicked) {
             matchCounter++;
-            console.log('MATCHED!');
             $(this).off();
+            console.log('MATCHED CARDS!');
+            storedCard = null;
             firstCardClicked = 0;
             secondCardClicked = 0;
-            if(matchCounter === totalPossibleMatches){
-                    console.log('WON DA GAME')
+            if (matchCounter === totalPossibleMatches) {
+                console.log('WON DA GAME');
+                console.log('WON DA GAME');
+                console.log('WON DA GAME');
+                console.log('WON DA GAME');
+                console.log('WON DA GAME');
+                console.log('WON DA GAME');
             }
-
         } else {
             $(this).off();
             setTimeout(function(){
-                storedCard.show();
-                cardHide.show();
+                $(storedCard).find('.back').show();
+                $(cardHideBack).find('.back').show();
                 storedCard = null;
-                clickHandleOffandOn.click(cardClicked);
-                $(this).click(cardClicked);
-                clickHandleOffandOn = null;
             }, 2000);
             firstCardClicked = 0;
             secondCardClicked = 0;
             console.log('work??')
         }
     }
-
 }
+
 
 
 
