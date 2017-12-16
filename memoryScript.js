@@ -8,7 +8,8 @@ var firstCardClicked = 0,
     matches = 0,
     attempts = 0,
     accuracy = 0 + '%',
-    gamesPlayed = 9000;
+    gamesPlayed = 9000,
+    setTimeOutTimer = null;
 
 var randomCardArray = ['Blind_Specter.png',
     'Cagney_carnation_2.png',
@@ -42,6 +43,10 @@ function applyCardClickHandler() {
     $('.card').click(cardClicked);
 }
 
+function toggleClickOnOff(card){
+    $(card).toggleClass('disableClick');
+}
+
 function displayStats() {
     $('.games-played .value').text(gamesPlayed);
     $('.attempts .value').text(attempts);
@@ -64,6 +69,7 @@ function resetStats() {
 }
 
 function resetButton() {
+    clearTimeOut();
     gamesPlayed++;
     resetStats();
     $('.card').remove();
@@ -72,19 +78,16 @@ function resetButton() {
 }
 
 function cardClicked() {
-
-    var cardHideBack = this;
-    $(cardHideBack).find('.back').hide();
-    console.log('cardhidden', cardHideBack);
-
     var matchCard = this;
-    console.log('matchcardclicked', $(matchCard).find('.front').attr('src'));
+    $(this).toggleClass('transformBack');
 
     if (firstCardClicked === 0) {
         firstCardClicked = $(matchCard).find('.front').attr('src');
+        console.log(firstCardClicked);
         $(this).off();
-        storedCard = cardHideBack;
-        return;
+        storedCard = matchCard;
+        toggleClickOnOff(this);
+        return; //change this..
     }
 
     if (firstCardClicked !== 0) {
@@ -96,6 +99,7 @@ function cardClicked() {
             matches++;
             displayStats();
             $(this).off();
+            toggleClickOnOff(this);
             console.log('MATCHED CARDS!');
             storedCard = null;
             firstCardClicked = 0;
@@ -110,21 +114,13 @@ function cardClicked() {
             }
         } else {
             $('.card').off();
-            setTimeout(function(){
-
-                $(storedCard).find('.back').show();
-                $(cardHideBack).find('.back').show();
-                applyCardClickHandler();
-                storedCard = null;
-
-            }, 2000);
+            setTimer();
             firstCardClicked = 0;
             secondCardClicked = 0;
             console.log('work??')
         }
     }
 }
-
 function createCards() {
     while(randomCardArray.length > 0){
 
@@ -142,5 +138,20 @@ function createCards() {
 randomCardArray = storedCardArray.slice();
 }
 
+function clearTimeOut(){
+    clearTimeout(setTimeOutTimer);
+}
 
+function setTimer() {
+    setTimeOutTimer = setTimeout(function () {
 
+        $(storedCard).toggleClass('transformBack');
+        $(this).toggleClass('transformBack');
+
+        applyCardClickHandler();
+
+        toggleClickOnOff(storedCard);
+        storedCard = null;
+
+    }, 1000);
+}
