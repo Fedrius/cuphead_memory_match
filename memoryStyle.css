@@ -85,7 +85,15 @@ h1 {
     position: relative;
     margin-bottom: 15px;
     border-radius: 8px;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
     transform-style: preserve-3d;
+
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
     transition: transform .3s linear 0s;
 }
 
@@ -96,40 +104,27 @@ h1 {
     border: 2px solid black;
     border-radius: 8px;
     box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+.front {
+    transform: perspective( 800px ) rotateY( 180deg );
+    -webkit-transform: perspective( 800px ) rotateY( 180deg );
+    -moz-transform: perspective( 800px ) rotateY( 180deg );
+    -o-transform: perspective( 800px ) rotateY( 180deg );
+}
+
+.transformBack {
+    transform: perspective( 800px ) rotateY( 180deg );
+    -webkit-transform: perspective( 800px ) rotateY( 180deg );
+    -moz-transform: perspective( 800px ) rotateY( 180deg );
+    -o-transform: perspective( 800px ) rotateY( 180deg );
 }
 
 .disableClick {
     pointer-events: none;
 }
-
-.front {
-    transform: perspective( 800px ) rotateY( 180deg );
-}
-
-.transformBack {
-    transform: perspective( 800px ) rotateY( 180deg );
-}
-
-/*.front {*/
-    /*transform: perspective( 800px ) rotateY( 180deg ); !*rotated image 180 degrees*!*/
-    /*backface-visibility: hidden; !*hides the back of the rotated image*!*/
-    /*transition: transform .5s linear 0s;*/
-/*}*/
-
-/*.back {*/
-    /*transform: perspective( 800px ) rotateY( 0deg );*/
-    /*backface-visibility: hidden;*/
-    /*transition: transform .5s linear 0s;*/
-/*}*/
-
-/*.transformFront {*/
-    /*transform: perspective( 800px ) rotateY( 0deg );*/
-/*}*/
-
-/*.transformBack {*/
-    /*transform: perspective( 800px ) rotateY( -180deg );*/
-/*}*/
-
-
-

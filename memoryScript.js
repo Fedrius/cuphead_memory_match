@@ -114,11 +114,25 @@ function cardClicked() {
             }
         } else {
             $('.card').off();
-            setTimer();
+            setTimer(this);
             firstCardClicked = 0;
             secondCardClicked = 0;
             console.log('work??')
         }
+    }
+
+    function setTimer(temp) {
+        setTimeOutTimer = setTimeout(function () {
+
+            $(storedCard).toggleClass('transformBack');
+            $(temp).toggleClass('transformBack');
+
+            applyCardClickHandler();
+
+            toggleClickOnOff(storedCard);
+            storedCard = null;
+
+        }, 1000);
     }
 }
 function createCards() {
@@ -142,16 +156,16 @@ function clearTimeOut(){
     clearTimeout(setTimeOutTimer);
 }
 
-function setTimer() {
-    setTimeOutTimer = setTimeout(function () {
-
-        $(storedCard).toggleClass('transformBack');
-        $(this).toggleClass('transformBack');
-
-        applyCardClickHandler();
-
-        toggleClickOnOff(storedCard);
-        storedCard = null;
-
-    }, 1000);
-}
+// function setTimer(temp) {
+//     setTimeOutTimer = setTimeout(function () {
+//
+//         $(storedCard).toggleClass('transformBack');
+//         $(temp).toggleClass('transformBack');
+//
+//         applyCardClickHandler();
+//
+//         toggleClickOnOff(storedCard);
+//         storedCard = null;
+//
+//     }, 1000);
+// }
