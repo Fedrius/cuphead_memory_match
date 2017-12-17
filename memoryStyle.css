@@ -2,26 +2,30 @@ body {
     background: url(cupheadback.png) no-repeat center center fixed;
     background-size: cover;
     font-family: 'Luckiest Guy', cursive;
+    display: flex;
 }
-.headerContainer {
-    /*border: 2px solid black;*/
-    height: 100px;
+.reset {
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.container {
+    width: 84vw;
+    margin: 5px auto;
 }
 
 h1 {
-    font-size: 4em;
-    margin-top: 25px;
+    font-size: 3em;
     text-align: center;
+    margin: 10px auto;
 }
 
 .statsContainer {
     /*border: 2px solid black;*/
     text-align: center;
     height: 80vh;
-    width: 12vw;
+    width: 15%;
     margin-top: 20px;
-    display: inline-block;
-    vertical-align: top;
+    float: left;
 }
 
 
@@ -37,7 +41,7 @@ h1 {
 }
 
 .games-played, .attempts, .accuracy {
-    font-size: 1.7em;
+    font-size: 1.4em;
 }
 
 .games-played {
@@ -55,7 +59,7 @@ h1 {
 .reset {
     margin-top: 10px;
     margin-bottom: 14px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     border-radius: 10px;
 }
 
@@ -67,21 +71,21 @@ h1 {
 #game-area {
     /*border: 2px solid black;*/
     height: 80vh;
-    min-width: 64vw;
+    width: 82%;
     margin-top: 20px;
-    display: inline-block;
+    margin-left: 20px;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .card {
-    /*height: 180px;*/
-    /*width: 130px;*/
-    /*border: 1px solid crimson;*/
-    height: 29%;
+    height: 30%;
     width: 14%;
     display: flex;
     justify-content: space-around;
-    margin-right: 15px;
-    float: left;
+    margin-right: 20px;
     position: relative;
     margin-bottom: 15px;
     border-radius: 8px;
@@ -127,4 +131,57 @@ h1 {
 
 .disableClick {
     pointer-events: none;
+}
+
+@media screen and (max-width: 1109px) and (min-width: 821px){
+    .games-played, .attempts, .accuracy, .settings, .aboutMe {
+        font-size: 1em;
+    }
+    #game-area {
+        width: 82%;
+        margin-left: 10px;
+    }
+    h1{
+        font-size: 2.5em;
+    }
+    .reset {
+        font-size: .8em;
+    }
+    .card {
+        height: 29%;
+        width: 13.8%;
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 820px) and (min-width: 654px) {
+    .container {
+        width: 100%;
+    }
+    .statsContainer {
+        width: 15%;
+    }
+    #game-area {
+        width: 82%;
+        margin-left: 10px;
+    }
+    h1{
+        font-size: 2em;
+        margin: 0;
+    }
+    .games-played, .attempts, .accuracy, .settings, .aboutMe {
+        font-size: .8em;
+    }
+    .reset {
+        font-size: .6em;
+    }
+    .card {
+        height: 29%;
+        width: 13.8%;
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 653px) {
+    /*breaks*/
 }
