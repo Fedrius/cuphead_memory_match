@@ -7,7 +7,7 @@ var firstCardClicked = 0,
     storedCard = null,
     matches = 0,
     attempts = 0,
-    accuracy = 0 + '%',
+    accuracy = 0 + '.00%',
     gamesPlayed = 9000,
     setTimeOutTimer = null;
 
@@ -30,16 +30,48 @@ var randomCardArray = ['Blind_Specter.png',
     'Match.png',
     'Psycarrot_brain_minding.png'];
 
-var storedCardArray = randomCardArray.slice();
+var cupheadOrMugmanCard = ["Cupheadcardback.png", "mugmanCard.jpg"];
 
-function initializeApp() {
+function initializeApp(){
     createCards();
     applyCardClickHandler();
+    buttonAndModalClickHandlers();
     displayStats();
-    $('.reset').click(resetButton);
+    // $('.settings').click(showSettings);
 }
 
-function applyCardClickHandler() {
+// function showSettings(){
+//     $('.settingsModal').show();
+// }
+function buttonAndModalClickHandlers(){
+    $('.reset').click(resetButton);
+    $('.winnerModal').on('click', hideWinner);
+    $(window).keydown(function(){
+        $('.winnerModal').fadeOut(500);
+    });
+    $('.aboutMe>span').click(showAboutMe);
+    $('.close').click(hideAboutMe);
+
+    // $('.settings').click(showSettings);
+}
+
+function showAboutMe(){
+    $('.aboutMeModal').fadeIn(200);
+}
+
+function hideAboutMe(){
+    $('.aboutMeModal').fadeOut(200);
+}
+
+function showWinner(){
+    $('.winnerModal').fadeIn(1000);
+}
+
+function hideWinner(){
+    $('.winnerModal').fadeOut(500);
+}
+
+function applyCardClickHandler(){
     $('.card').click(cardClicked);
 }
 
@@ -47,50 +79,49 @@ function toggleClickOnOff(card){
     $(card).toggleClass('disableClick');
 }
 
-function displayStats() {
+function displayStats(){
     $('.games-played .value').text(gamesPlayed);
     $('.attempts .value').text(attempts);
 
-    if(matches > 0 || attempts > 0){
+    if(attempts > 0){
         accuracy = ((matches / attempts) * 100).toFixed(2) + '%';
     }
     $('.accuracy .value').text(accuracy);
 }
 
-function resetStats() {
+function resetStats(){
     storedCard = null;
     firstCardClicked = 0;
     secondCardClicked = 0;
     matchCounter = 0;
     matches = 0;
     attempts = 0;
-    accuracy = 0 + '%';
+    accuracy = 0 + '.00%';
     displayStats();
 }
 
-function resetButton() {
+function resetButton(){
     clearTimeOut();
     gamesPlayed++;
     resetStats();
+    $('.reset').text('Reset Game');
     $('.card').remove();
     createCards();
     applyCardClickHandler();
 }
 
-function cardClicked() {
+function cardClicked(){
     var matchCard = this;
     $(this).toggleClass('transformBack');
 
-    if (firstCardClicked === 0) {
+    if (firstCardClicked === 0){
         firstCardClicked = $(matchCard).find('.front').attr('src');
-        console.log(firstCardClicked);
-        $(this).off();
-        storedCard = matchCard;
         toggleClickOnOff(this);
-        return; //change this..
+        storedCard = matchCard;
+        return;
     }
 
-    if (firstCardClicked !== 0) {
+    if (firstCardClicked !== 0){
         attempts++;
         displayStats();
         secondCardClicked = $(matchCard).find('.front').attr('src');
@@ -98,50 +129,45 @@ function cardClicked() {
             matchCounter++;
             matches++;
             displayStats();
-            $(this).off();
             toggleClickOnOff(this);
-            console.log('MATCHED CARDS!');
             storedCard = null;
             firstCardClicked = 0;
             secondCardClicked = 0;
-            if (matchCounter === totalPossibleMatches) {
-                console.log('WON DA GAME');
-                console.log('WON DA GAME');
-                console.log('WON DA GAME');
-                console.log('WON DA GAME');
-                console.log('WON DA GAME');
-                console.log('WON DA GAME');
+            if (matchCounter === totalPossibleMatches){
+                showWinner();
+                $('.reset').text('Play Again!');
             }
         } else {
             $('.card').off();
             setTimer(this);
             firstCardClicked = 0;
             secondCardClicked = 0;
-            console.log('work??')
         }
     }
 
-    function setTimer(temp) {
-        setTimeOutTimer = setTimeout(function () {
-
+    function setTimer(temp){
+        setTimeOutTimer = setTimeout(function(){
             $(storedCard).toggleClass('transformBack');
             $(temp).toggleClass('transformBack');
 
             applyCardClickHandler();
-
             toggleClickOnOff(storedCard);
             storedCard = null;
 
         }, 1000);
     }
 }
-function createCards() {
+
+function createCards(){
+    var storedCardArray = randomCardArray.slice();
+    var cupmanOrMugmanIndex = Math.floor(Math.random() * 2);
+
     while(randomCardArray.length > 0){
 
         var randomizedCardIndex = Math.floor(Math.random() * (randomCardArray.length));
         var newDiv = $('<div>').addClass('card');
         var newFront = $('<img>').addClass('front').attr('src',randomCardArray[randomizedCardIndex]);
-        var newBack = $('<img>').addClass('back').attr('src', "Cupheadcardback.png");
+        var newBack = $('<img>').addClass('back').attr('src', cupheadOrMugmanCard[cupmanOrMugmanIndex]);
         randomCardArray.splice(randomizedCardIndex, 1);
 
         newDiv.append(newFront);
@@ -155,17 +181,3 @@ randomCardArray = storedCardArray.slice();
 function clearTimeOut(){
     clearTimeout(setTimeOutTimer);
 }
-
-// function setTimer(temp) {
-//     setTimeOutTimer = setTimeout(function () {
-//
-//         $(storedCard).toggleClass('transformBack');
-//         $(temp).toggleClass('transformBack');
-//
-//         applyCardClickHandler();
-//
-//         toggleClickOnOff(storedCard);
-//         storedCard = null;
-//
-//     }, 1000);
-// }

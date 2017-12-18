@@ -4,8 +4,12 @@ body {
     font-family: 'Luckiest Guy', cursive;
     display: flex;
 }
-.reset {
+.reset, .settings {
     font-family: 'Luckiest Guy', cursive;
+}
+
+.reset:hover {
+    cursor: pointer;
 }
 
 .container {
@@ -17,6 +21,7 @@ h1 {
     font-size: 3em;
     text-align: center;
     margin: 10px auto;
+    text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
 }
 
 .statsContainer {
@@ -27,7 +32,6 @@ h1 {
     margin-top: 20px;
     float: left;
 }
-
 
 .insideStatsContainer {
     border: 2px solid black;
@@ -45,20 +49,26 @@ h1 {
 }
 
 .games-played {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .attempts {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .accuracy {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .reset {
+    margin-top: 15px;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+.settings {
     margin-top: 10px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     font-size: 1.1em;
     border-radius: 10px;
 }
@@ -133,8 +143,166 @@ h1 {
     pointer-events: none;
 }
 
+.screenTooSmall {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*background-color: rgb(0,0,0);*/
+    background: url(bones.gif) no-repeat center;
+    background-size: cover;
+}
+.brokenContent {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+/* The Modal (background) */
+/*.settingsModal {*/
+    /*display: none; !* Hidden by default *!*/
+    /*position: fixed; !* Stay in place *!*/
+    /*z-index: 1; !* Sit on top *!*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%; !* Full width *!*/
+    /*height: 100%; !* Full height *!*/
+    /*overflow: auto; !* Enable scroll if needed *!*/
+    /*background-color: rgb(0,0,0); !* Fallback color *!*/
+    /*background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
+/*}*/
+/*.settingsContent {*/
+    /*background-color: #fefefe;*/
+    /*margin: 15% auto; !* 15% from the top and centered *!*/
+    /*padding: 20px;*/
+    /*border: 1px solid #888;*/
+    /*width: 30%; !* Could be more or less, depending on screen size *!*/
+/*}*/
+
+
+
+
+
+.aboutMeModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.aboutMeContent {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: ghostwhite;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
+}
+
+.aboutMeContent>img {
+    float: left;
+    width: 160px;
+    margin-right: 25px;
+}
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+
+.winnerModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.winnerContent {
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+    background: url(winnerGif.gif) no-repeat center;
+    background-size: cover;
+    margin: 10% auto; /
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
+    width: 50%;
+    height: 50%;
+}
+.winnerContent>p {
+    color: rgb(255, 211, 52);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    font-size: 2.5em;
+    border-radius: 10px;
+    margin-bottom: 35px;
+}
+
+/*.startModal {*/
+    /*display: none; !* Hidden by default *!*/
+    /*position: fixed; !* Stay in place *!*/
+    /*z-index: 1; !* Sit on top *!*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%; !* Full width *!*/
+    /*height: 100%; !* Full height *!*/
+    /*overflow: auto; !* Enable scroll if needed *!*/
+    /*background-color: rgb(0,0,0); !* Fallback color *!*/
+    /*background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
+/*}*/
+/*.startContent {*/
+    /*background-color: #fefefe;*/
+    /*margin: 15% auto; !* 15% from the top and centered *!*/
+    /*padding: 20px;*/
+    /*border: 1px solid #888;*/
+    /*width: 50%; !* Could be more or less, depending on screen size *!*/
+/*}*/
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.aboutMe>span:hover {
+    cursor: pointer;
+    color: cadetblue;
+}
+
+.aboutMe>span {
+    color: darkcyan;
+}
+
+
 @media screen and (max-width: 1109px) and (min-width: 821px){
-    .games-played, .attempts, .accuracy, .settings, .aboutMe {
+    .games-played, .attempts, .accuracy, .aboutMe {
         font-size: 1em;
     }
     #game-area {
@@ -144,7 +312,7 @@ h1 {
     h1{
         font-size: 2.5em;
     }
-    .reset {
+    .reset, .settings {
         font-size: .8em;
     }
     .card {
@@ -169,10 +337,10 @@ h1 {
         font-size: 2em;
         margin: 0;
     }
-    .games-played, .attempts, .accuracy, .settings, .aboutMe {
+    .games-played, .attempts, .accuracy, .aboutMe {
         font-size: .8em;
     }
-    .reset {
+    .reset, .settings {
         font-size: .6em;
     }
     .card {
@@ -183,5 +351,7 @@ h1 {
 }
 
 @media screen and (max-width: 653px) {
-    /*breaks*/
+    .screenTooSmall {
+        display: block;
+    }
 }
