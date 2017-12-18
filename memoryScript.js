@@ -112,7 +112,7 @@ function resetButton(){
 
 function cardClicked(){
     var matchCard = this;
-    $(this).toggleClass('transformBack');
+    $(this).toggleClass('transformBack hover');
 
     if (firstCardClicked === 0){
         firstCardClicked = $(matchCard).find('.front').attr('src');
@@ -147,8 +147,8 @@ function cardClicked(){
 
     function setTimer(temp){
         setTimeOutTimer = setTimeout(function(){
-            $(storedCard).toggleClass('transformBack');
-            $(temp).toggleClass('transformBack');
+            $(storedCard).toggleClass('transformBack hover');
+            $(temp).toggleClass('transformBack hover');
 
             applyCardClickHandler();
             toggleClickOnOff(storedCard);
@@ -165,7 +165,9 @@ function createCards(){
     while(randomCardArray.length > 0){
 
         var randomizedCardIndex = Math.floor(Math.random() * (randomCardArray.length));
-        var newDiv = $('<div>').addClass('card');
+        var newDiv = $('<div>',{
+            class: 'card hover'
+        });
         var newFront = $('<img>').addClass('front').attr('src',randomCardArray[randomizedCardIndex]);
         var newBack = $('<img>').addClass('back').attr('src', cupheadOrMugmanCard[cupmanOrMugmanIndex]);
         randomCardArray.splice(randomizedCardIndex, 1);
