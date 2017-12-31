@@ -7,7 +7,6 @@ function initializeApp(){
 
 function MemoryGame(){
     this.theObject = this;
-
     this.firstCardClicked = 0;
     this.secondCardClicked = 0;
     this.matchCounter = 0;
@@ -18,7 +17,6 @@ function MemoryGame(){
     this.accuracy = 0 + '.00%';
     this.gamesPlayed = 9000;
     this.setTimeOutTimer = null;
-
     this.cupheadOrMugmanCard = ["Cupheadcardback.png", "mugmanCard.jpg"];
     this.randomCardArray = ['Blind_Specter.png',
                             'Cagney_carnation_2.png',
@@ -134,15 +132,16 @@ function MemoryGame(){
             $('#game-area').append(newDiv);
         }
 
-         this.randomCardArray = storedCardArray.slice();
+        this.randomCardArray = storedCardArray.slice();
     };
 
     this.cardClicked = function(event) {
         var matchCard = event.currentTarget;
         $(event.currentTarget).toggleClass('transformBack hover');
+        var frontCard = event.currentTarget.firstChild;
 
         if (this.firstCardClicked === 0) {
-            this.firstCardClicked = $(matchCard).find('.front').attr('src');
+            this.firstCardClicked = $(frontCard).attr('src');
             this.toggleClickOnOff(event.currentTarget);
             this.storedCard = matchCard;
             return;
@@ -151,7 +150,7 @@ function MemoryGame(){
         if (this.firstCardClicked !== 0) {
             this.attempts++;
             this.displayStats();
-            this.secondCardClicked = $(matchCard).find('.front').attr('src');
+            this.secondCardClicked = $(frontCard).attr('src');
             if (this.secondCardClicked === this.firstCardClicked) {
                 this.matchCounter++;
                 this.matches++;
@@ -174,14 +173,14 @@ function MemoryGame(){
     };
 
     this.setTimer = function(temp){
+        var theObject = this;
         this.setTimeOutTimer = setTimeout(function(){
-            $(this.storedCard).toggleClass('transformBack hover');
+            $(theObject.storedCard).toggleClass('transformBack hover');
             $(temp).toggleClass('transformBack hover');
 
-            this.applyCardClickHandler();
-            this.toggleClickOnOff(this.storedCard);
-            this.storedCard = null;
-
+            theObject.applyCardClickHandler();
+            theObject.toggleClickOnOff(theObject.storedCard);
+            theObject.storedCard = null;
         }, 1000);
-    }
+    };
 }
