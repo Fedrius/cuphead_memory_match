@@ -1,185 +1,187 @@
 $(document).ready(initializeApp);
-
-var firstCardClicked = 0,
-    secondCardClicked = 0,
-    matchCounter = 0,
-    totalPossibleMatches = 9,
-    storedCard = null,
-    matches = 0,
-    attempts = 0,
-    accuracy = 0 + '.00%',
-    gamesPlayed = 9000,
-    setTimeOutTimer = null;
-
-var randomCardArray = ['Blind_Specter.png',
-    'Cagney_carnation_2.png',
-    'Cala_maria.png',
-    'Croak.png',
-    'Devil.png',
-    'Honeybottoms.jpg',
-    'KingTheDice.jpg',
-    'Match.png',
-    'Psycarrot_brain_minding.png',
-    'Blind_Specter.png',
-    'Cagney_carnation_2.png',
-    'Cala_maria.png',
-    'Croak.png',
-    'Devil.png',
-    'Honeybottoms.jpg',
-    'KingTheDice.jpg',
-    'Match.png',
-    'Psycarrot_brain_minding.png'];
-
-var cupheadOrMugmanCard = ["Cupheadcardback.png", "mugmanCard.jpg"];
-
+var memoryGame = null;
 function initializeApp(){
-    createCards();
-    applyCardClickHandler();
-    buttonAndModalClickHandlers();
-    displayStats();
-    // $('.settings').click(showSettings);
+    memoryGame = new MemoryGame();
+    memoryGame.init();
 }
 
-// function showSettings(){
-//     $('.settingsModal').show();
-// }
-function buttonAndModalClickHandlers(){
-    $('.reset').click(resetButton);
-    $('.winnerModal').on('click', hideWinner);
-    $(window).keydown(function(){
+function MemoryGame(){
+    this.theObject = this;
+
+    this.firstCardClicked = 0;
+    this.secondCardClicked = 0;
+    this.matchCounter = 0;
+    this.totalPossibleMatches = 9;
+    this.storedCard = null;
+    this.matches = 0;
+    this.attempts = 0;
+    this.accuracy = 0 + '.00%';
+    this.gamesPlayed = 9000;
+    this.setTimeOutTimer = null;
+
+    this.cupheadOrMugmanCard = ["Cupheadcardback.png", "mugmanCard.jpg"];
+    this.randomCardArray = ['Blind_Specter.png',
+                            'Cagney_carnation_2.png',
+                            'Cala_maria.png',
+                            'Croak.png',
+                            'Devil.png',
+                            'Honeybottoms.jpg',
+                            'KingTheDice.jpg',
+                            'Match.png',
+                            'Psycarrot_brain_minding.png',
+                            'Blind_Specter.png',
+                            'Cagney_carnation_2.png',
+                            'Cala_maria.png',
+                            'Croak.png',
+                            'Devil.png',
+                            'Honeybottoms.jpg',
+                            'KingTheDice.jpg',
+                            'Match.png',
+                            'Psycarrot_brain_minding.png'];
+
+    this.init = function(){
+        this.createCards();
+        this.applyCardClickHandler();
+        this.buttonAndModalClickHandlers();
+        this.displayStats();
+    };
+
+    this.buttonAndModalClickHandlers = function(){
+        $('.reset').on('click', this.resetButton.bind(this));
+        $('.winnerModal').on('click', this.hideWinner.bind(this));
+        $(window).keydown(function(){
+            $('.winnerModal').fadeOut(500);
+        });
+        $('.aboutMe>span').on('click', this.showAboutMe.bind(this));
+        $('.close').on('click', this.hideAboutMe.bind(this));
+    };
+
+    this.showAboutMe = function(){
+        $('.aboutMeModal').fadeIn(200);
+    };
+
+    this.hideAboutMe = function(){
+        $('.aboutMeModal').fadeOut(200);
+    };
+
+    this.showWinner = function(){
+        $('.winnerModal').fadeIn(1000);
+    };
+
+    this.hideWinner = function(){
         $('.winnerModal').fadeOut(500);
-    });
-    $('.aboutMe>span').click(showAboutMe);
-    $('.close').click(hideAboutMe);
+    };
 
-    // $('.settings').click(showSettings);
-}
+    this.applyCardClickHandler = function(){
+        $('.card').on('click', this.cardClicked.bind(this));
+    };
 
-function showAboutMe(){
-    $('.aboutMeModal').fadeIn(200);
-}
+    this.toggleClickOnOff = function(card){
+        $(card).toggleClass('disableClick');
+    };
 
-function hideAboutMe(){
-    $('.aboutMeModal').fadeOut(200);
-}
+    this.clearTimeOut = function(){
+        clearTimeout(this.setTimeOutTimer);
+    };
 
-function showWinner(){
-    $('.winnerModal').fadeIn(1000);
-}
+    this.displayStats = function(){
+        $('.games-played .value').text(this.gamesPlayed);
+        $('.attempts .value').text(this.attempts);
 
-function hideWinner(){
-    $('.winnerModal').fadeOut(500);
-}
-
-function applyCardClickHandler(){
-    $('.card').click(cardClicked);
-}
-
-function toggleClickOnOff(card){
-    $(card).toggleClass('disableClick');
-}
-
-function displayStats(){
-    $('.games-played .value').text(gamesPlayed);
-    $('.attempts .value').text(attempts);
-
-    if(attempts > 0){
-        accuracy = ((matches / attempts) * 100).toFixed(2) + '%';
-    }
-    $('.accuracy .value').text(accuracy);
-}
-
-function resetStats(){
-    storedCard = null;
-    firstCardClicked = 0;
-    secondCardClicked = 0;
-    matchCounter = 0;
-    matches = 0;
-    attempts = 0;
-    accuracy = 0 + '.00%';
-    displayStats();
-}
-
-function resetButton(){
-    clearTimeOut();
-    gamesPlayed++;
-    resetStats();
-    $('.reset').text('Reset Game');
-    $('.card').remove();
-    createCards();
-    applyCardClickHandler();
-}
-
-function cardClicked(){
-    var matchCard = this;
-    $(this).toggleClass('transformBack hover');
-
-    if (firstCardClicked === 0){
-        firstCardClicked = $(matchCard).find('.front').attr('src');
-        toggleClickOnOff(this);
-        storedCard = matchCard;
-        return;
-    }
-
-    if (firstCardClicked !== 0){
-        attempts++;
-        displayStats();
-        secondCardClicked = $(matchCard).find('.front').attr('src');
-        if (secondCardClicked === firstCardClicked) {
-            matchCounter++;
-            matches++;
-            displayStats();
-            toggleClickOnOff(this);
-            storedCard = null;
-            firstCardClicked = 0;
-            secondCardClicked = 0;
-            if (matchCounter === totalPossibleMatches){
-                showWinner();
-                $('.reset').text('Play Again!');
-            }
-        } else {
-            $('.card').off();
-            setTimer(this);
-            firstCardClicked = 0;
-            secondCardClicked = 0;
+        if(this.attempts > 0){
+            this.accuracy = ((this.matches / this.attempts) * 100).toFixed(2) + '%';
         }
-    }
+        $('.accuracy .value').text(this.accuracy);
+    };
 
-    function setTimer(temp){
-        setTimeOutTimer = setTimeout(function(){
-            $(storedCard).toggleClass('transformBack hover');
+    this.resetStats = function(){
+        this.storedCard = null;
+        this.firstCardClicked = 0;
+        this.secondCardClicked = 0;
+        this.matchCounter = 0;
+        this.matches = 0;
+        this.attempts = 0;
+        this.accuracy = 0 + '.00%';
+        this.displayStats();
+    };
+
+     this.resetButton = function(){
+        this.clearTimeOut();
+        this.gamesPlayed++;
+        this.resetStats();
+        $('.reset').text('Reset Game');
+        $('.card').remove();
+        this.createCards();
+        this.applyCardClickHandler();
+    };
+
+     this.createCards = function(){
+        var storedCardArray = this.randomCardArray.slice();
+        var cupmanOrMugmanIndex = Math.floor(Math.random() * 2);
+
+        while(this.randomCardArray.length > 0){
+
+            var randomizedCardIndex = Math.floor(Math.random() * (this.randomCardArray.length));
+            var newDiv = $('<div>',{
+                class: 'card hover'
+            });
+            var newFront = $('<img>').addClass('front').attr('src',this.randomCardArray[randomizedCardIndex]);
+            var newBack = $('<img>').addClass('back').attr('src', this.cupheadOrMugmanCard[cupmanOrMugmanIndex]);
+            this.randomCardArray.splice(randomizedCardIndex, 1);
+
+            newDiv.append(newFront);
+            newDiv.append(newBack);
+            $('#game-area').append(newDiv);
+        }
+
+         this.randomCardArray = storedCardArray.slice();
+    };
+
+    this.cardClicked = function(event) {
+        var matchCard = event.currentTarget;
+        $(event.currentTarget).toggleClass('transformBack hover');
+
+        if (this.firstCardClicked === 0) {
+            this.firstCardClicked = $(matchCard).find('.front').attr('src');
+            this.toggleClickOnOff(event.currentTarget);
+            this.storedCard = matchCard;
+            return;
+        }
+
+        if (this.firstCardClicked !== 0) {
+            this.attempts++;
+            this.displayStats();
+            this.secondCardClicked = $(matchCard).find('.front').attr('src');
+            if (this.secondCardClicked === this.firstCardClicked) {
+                this.matchCounter++;
+                this.matches++;
+                this.displayStats();
+                this.toggleClickOnOff(event.currentTarget);
+                this.storedCard = null;
+                this.firstCardClicked = 0;
+                this.secondCardClicked = 0;
+                if (this.matchCounter === this.totalPossibleMatches) {
+                    this.showWinner();
+                    $('.reset').text('Play Again!');
+                }
+            } else {
+                $('.card').off();
+                this.setTimer(event.currentTarget);
+                this.firstCardClicked = 0;
+                this.secondCardClicked = 0;
+            }
+        }
+    };
+
+    this.setTimer = function(temp){
+        this.setTimeOutTimer = setTimeout(function(){
+            $(this.storedCard).toggleClass('transformBack hover');
             $(temp).toggleClass('transformBack hover');
 
-            applyCardClickHandler();
-            toggleClickOnOff(storedCard);
-            storedCard = null;
+            this.applyCardClickHandler();
+            this.toggleClickOnOff(this.storedCard);
+            this.storedCard = null;
 
         }, 1000);
     }
-}
-
-function createCards(){
-    var storedCardArray = randomCardArray.slice();
-    var cupmanOrMugmanIndex = Math.floor(Math.random() * 2);
-
-    while(randomCardArray.length > 0){
-
-        var randomizedCardIndex = Math.floor(Math.random() * (randomCardArray.length));
-        var newDiv = $('<div>',{
-            class: 'card hover'
-        });
-        var newFront = $('<img>').addClass('front').attr('src',randomCardArray[randomizedCardIndex]);
-        var newBack = $('<img>').addClass('back').attr('src', cupheadOrMugmanCard[cupmanOrMugmanIndex]);
-        randomCardArray.splice(randomizedCardIndex, 1);
-
-        newDiv.append(newFront);
-        newDiv.append(newBack);
-        $('#game-area').append(newDiv);
-    }
-
-randomCardArray = storedCardArray.slice();
-}
-
-function clearTimeOut(){
-    clearTimeout(setTimeOutTimer);
 }
