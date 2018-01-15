@@ -1,5 +1,5 @@
 $(document).ready(initializeApp);
-var memoryGame = null;
+let memoryGame = null;
 function initializeApp(){
     memoryGame = new MemoryGame();
     memoryGame.init();
@@ -114,17 +114,17 @@ function MemoryGame(){
     };
 
      this.createCards = function(){
-        var storedCardArray = this.randomCardArray.slice();
-        var cupmanOrMugmanIndex = Math.floor(Math.random() * 2);
+        let storedCardArray = this.randomCardArray.slice();
+        let cupmanOrMugmanIndex = Math.floor(Math.random() * 2);
 
         while(this.randomCardArray.length > 0){
 
-            var randomizedCardIndex = Math.floor(Math.random() * (this.randomCardArray.length));
-            var newDiv = $('<div>',{
+            let randomizedCardIndex = Math.floor(Math.random() * (this.randomCardArray.length));
+            let newDiv = $('<div>',{
                 class: 'card hover'
             });
-            var newFront = $('<img>').addClass('front').attr('src',this.randomCardArray[randomizedCardIndex]);
-            var newBack = $('<img>').addClass('back').attr('src', this.cupheadOrMugmanCard[cupmanOrMugmanIndex]);
+            let newFront = $('<img>').addClass('front').attr('src',this.randomCardArray[randomizedCardIndex]);
+            let newBack = $('<img>').addClass('back').attr('src', this.cupheadOrMugmanCard[cupmanOrMugmanIndex]);
             this.randomCardArray.splice(randomizedCardIndex, 1);
 
             newDiv.append(newFront);
@@ -136,9 +136,9 @@ function MemoryGame(){
     };
 
     this.cardClicked = function(event) {
-        var matchCard = event.currentTarget;
+        let matchCard = event.currentTarget;
         $(event.currentTarget).toggleClass('transformBack hover');
-        var frontCard = event.currentTarget.firstChild;
+        let frontCard = event.currentTarget.firstChild;
 
         if (this.firstCardClicked === 0) {
             this.firstCardClicked = $(frontCard).attr('src');
@@ -173,7 +173,7 @@ function MemoryGame(){
     };
 
     this.setTimer = function(temp){
-        var theObject = this;
+        let theObject = this;
         this.setTimeOutTimer = setTimeout(function(){
             $(theObject.storedCard).toggleClass('transformBack hover');
             $(temp).toggleClass('transformBack hover');
