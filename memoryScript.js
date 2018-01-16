@@ -5,8 +5,9 @@ function initializeApp(){
     memoryGame.init();
 }
 
+
+
 function MemoryGame(){
-    this.theObject = this;
     this.firstCardClicked = 0;
     this.secondCardClicked = 0;
     this.matchCounter = 0;
@@ -45,13 +46,13 @@ function MemoryGame(){
     };
 
     this.buttonAndModalClickHandlers = function(){
-        $('.reset').on('click', this.resetButton.bind(this));
-        $('.winnerModal').on('click', this.hideWinner.bind(this));
+        $('.reset').on('click', ()=>this.resetButton());
+        $('.winnerModal').on('click', ()=>this.hideWinner());
         $(window).keydown(function(){
             $('.winnerModal').fadeOut(500);
         });
-        $('.aboutMe>span').on('click', this.showAboutMe.bind(this));
-        $('.close').on('click', this.hideAboutMe.bind(this));
+        $('.aboutMe>span').on('click', ()=>this.showAboutMe());
+        $('.close').on('click', ()=>this.hideAboutMe());
     };
 
     this.showAboutMe = function(){
@@ -136,6 +137,7 @@ function MemoryGame(){
     };
 
     this.cardClicked = function(event) {
+
         let matchCard = event.currentTarget;
         $(event.currentTarget).toggleClass('transformBack hover');
         let frontCard = event.currentTarget.firstChild;
