@@ -50,8 +50,9 @@ class MemoryGame{
     buttonAndModalClickHandlers(){
         $('.reset').on('click', ()=>this.resetButton());
         $('.winnerModal').on('click', ()=>this.hideWinner());
-        $(window).keydown(function(){
+        $(window).keydown(()=>{
             $('.winnerModal').fadeOut(500);
+            $('.aboutMeModal').fadeOut(500);
         });
         $('.aboutMe>span').on('click', ()=>this.showAboutMe());
         $('.close').on('click', ()=>this.hideAboutMe());
@@ -107,8 +108,8 @@ class MemoryGame{
     }
 
     resetButton(){
-        this.clearTimeOut();
         this.gamesPlayed++;
+        this.clearTimeOut();
         this.resetStats();
         $('.reset').text('Reset Game');
         $('.card').remove();
@@ -126,8 +127,8 @@ class MemoryGame{
             let newDiv = $('<div>',{
                 class: 'card hover'
             });
-            let newFront = $('<img>').addClass('front').attr('src',this.randomCardArray[randomizedCardIndex]);
-            let newBack = $('<img>').addClass('back').attr('src', this.cupheadOrMugmanCard[cupmanOrMugmanIndex]);
+            let newFront = $('<img>').addClass('front').attr('src','images/' + this.randomCardArray[randomizedCardIndex]);
+            let newBack = $('<img>').addClass('back').attr('src','images/' + this.cupheadOrMugmanCard[cupmanOrMugmanIndex]);
             this.randomCardArray.splice(randomizedCardIndex, 1);
 
             newDiv.append(newFront);

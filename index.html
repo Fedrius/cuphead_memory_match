@@ -5,44 +5,35 @@
     <title>Memory Match</title>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Source+Sans+Pro" rel="stylesheet">
     <script src="jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="memoryStyle.css">
-    <script src="memoryScript.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="container">
-
-            <h1>Cuphead Memory Match</h1>
-
-            <div class="statsContainer">
-                <div class="insideStatsContainer">
-                    <div class="games-played">
-                        <div class="label">Games Played</div>
-                        <div class="value">0</div>
-                    </div>
-
-                    <div class="attempts">
-                        <div class="label">attempts</div>
-                        <div class="value">0</div>
-                    </div>
-
-                    <div class="accuracy">
-                        <div class="label">accuracy</div>
-                        <div class="value">0</div>
-                    </div>
-
-                    <button class="reset">Reset Game</button>
-                    <!--<button class="settings">Settings</button>-->
-
-                    <div class="aboutMe"><span>About</span></div>
+        <h1>Cuphead Memory Match</h1>
+        <div class="statsContainer">
+            <div class="insideStatsContainer">
+                <div class="games-played">
+                    <div class="label">Games Played</div>
+                    <div class="value">0</div>
                 </div>
+                <div class="attempts">
+                    <div class="label">attempts</div>
+                    <div class="value">0</div>
+                </div>
+                <div class="accuracy">
+                    <div class="label">accuracy</div>
+                    <div class="value">0</div>
+                </div>
+                <button class="reset">Reset Game</button>
+                <!--<button class="settings">Settings</button>-->
+                <div class="aboutMe"><span>About</span></div>
             </div>
-
-            <div id="game-area">
-
-            </div>
+        </div>
+        <div id="game-area">
+        </div>
     </div>
-
     <!--<div class="settingsModal">-->
         <!--<div class="settingsContent">-->
             <!--<span class="close">&times;</span>-->
@@ -50,11 +41,10 @@
             <!--<button class="closeModal">Close</button>-->
         <!--</div>-->
     <!--</div>-->
-
     <div class="aboutMeModal">
         <div class="aboutMeContent">
             <span class="close">&times;</span>
-            <img src="cupheadTheMan.gif" alt="picture of paul">
+            <img src="images/cupheadTheMan.gif" alt="picture of paul">
             <h3>About Me(REPLACE IMG)</h3>
             <p>Hi, my name is Paul and I'm an aspiring Web Developer from Southern California. <br>
                 The skills I needed to create this game include: <br>
@@ -66,16 +56,13 @@
             <hr>
             <p>lorem ipsum</p>
             <!--some links here later-->
-
         </div>
     </div>
-
     <div class="winnerModal">
         <div class="winnerContent">
             <p>Winner!</p>
         </div>
     </div>
-
     <!--<div class="startModal">-->
         <!--<div class="startContent">-->
             <!--<span class="close">&times;</span>-->
@@ -86,7 +73,6 @@
             <!--<button class="closeModal">Close</button>-->
         <!--</div>-->
     <!--</div>-->
-
     <div class="screenTooSmall">
         <div class="brokenContent">
             <p>TESSSSTING<br>
