@@ -17,7 +17,7 @@ class MemoryGame{
         this.matches = 0;
         this.attempts = 0;
         this.accuracy = 0 + '.00%';
-        this.gamesPlayed = 9000;
+        this.gamesPlayed = 0;
         this.setTimeOutTimer = null;
         this.cupheadOrMugmanCard = ["Cupheadcardback.png", "mugmanCard.jpg"];
         this.randomCardArray = ['Blind_Specter.png',
