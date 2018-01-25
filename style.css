@@ -358,7 +358,7 @@ hr {
     }
 }
 
-@media screen and (max-width: 653px) {
+@media screen and (max-width: 640px) {
     .screenTooSmall {
         display: block;
     }
