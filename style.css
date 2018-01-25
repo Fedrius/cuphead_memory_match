@@ -330,7 +330,7 @@ hr {
     }
 }
 
-@media screen and (max-width: 820px) and (min-width: 654px) {
+@media screen and (max-width: 820px) and (min-width: 640px) {
     .container {
         width: 100%;
     }
