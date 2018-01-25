@@ -358,7 +358,7 @@ hr {
     }
 }
 
-@media screen and (max-width: 652px) and (min-width: 640px) {
+@media screen and (max-width: 652px) {
     .card {
         height: 28%;
         width: 12.8%;
