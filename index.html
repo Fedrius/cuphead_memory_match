@@ -1,82 +1,135 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Memory Match</title>-->
+    <!--<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Source+Sans+Pro" rel="stylesheet">-->
+    <!--<script src="jquery-3.2.1.min.js"></script>-->
+    <!--<link rel="stylesheet" href="style.css">-->
+    <!--<script src="main.js"></script>-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--</head>-->
+<!--<body>-->
+    <!--<div class="container">-->
+        <!--<h1>Cuphead Memory Match</h1>-->
+        <!--<div class="statsContainer">-->
+            <!--<div class="insideStatsContainer">-->
+                <!--<div class="games-played">-->
+                    <!--<div class="label">Games Played</div>-->
+                    <!--<div class="value">0</div>-->
+                <!--</div>-->
+                <!--<div class="attempts">-->
+                    <!--<div class="label">attempts</div>-->
+                    <!--<div class="value">0</div>-->
+                <!--</div>-->
+                <!--<div class="accuracy">-->
+                    <!--<div class="label">accuracy</div>-->
+                    <!--<div class="value">0</div>-->
+                <!--</div>-->
+                <!--<button class="reset">Reset Game</button>-->
+                <!--&lt;!&ndash;<button class="settings">Settings</button>&ndash;&gt;-->
+                <!--<div class="aboutMe"><span>About</span></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="game-area">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<div class="settingsModal">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="settingsContent">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="close">&times;</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>Lorem Ipsum</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button class="closeModal">Close</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--<div class="aboutMeModal">-->
+        <!--<div class="aboutMeContent">-->
+            <!--<span class="close">&times;</span>-->
+            <!--<img src="images/cupheadTheMan.gif" alt="picture of paul">-->
+            <!--<h3>About Me</h3>-->
+            <!--<p>Hi, my name is Paul and I'm a Web Developer from Southern California. <br>-->
+                <!--The skills I needed to create this game include: <br>-->
+                <!--<span class="skills">HTML, CSS, Javascript, and jQuery</span>-->
+            <!--</p>-->
+            <!--<h3>About The Game</h3>-->
+            <!--<p>This is a memory match game with a theme based the on-->
+                <!--best selling video game Cuphead developed by StudioMDHR.</p>-->
+            <!--<hr>-->
+            <!--<p>lorem ipsum</p>-->
+            <!--&lt;!&ndash;some links here later&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="winnerModal">-->
+        <!--<div class="winnerContent">-->
+            <!--<p>Winner!</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<div class="startModal">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="startContent">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="close">&times;</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>Some text in the Modal..</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>Some text in the Modal..</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>Some text in the Modal..</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>Some text in the Modal..</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button class="closeModal">Close</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--<div class="screenTooSmall">-->
+        <!--<div class="brokenContent">-->
+            <!--<p>MOBILE DEVICES ROTATE TO LANDSCAPE MODE!</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Memory Match</title>
-    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Source+Sans+Pro" rel="stylesheet">
-    <script src="jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Video Conferencing using RTCMultiConnection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+    <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+    <style>
+        video {
+            width: 30%;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Cuphead Memory Match WORK?></h1>
-        <div class="statsContainer">
-            <div class="insideStatsContainer">
-                <div class="games-played">
-                    <div class="label">Games Played</div>
-                    <div class="value">0</div>
-                </div>
-                <div class="attempts">
-                    <div class="label">attempts</div>
-                    <div class="value">0</div>
-                </div>
-                <div class="accuracy">
-                    <div class="label">accuracy</div>
-                    <div class="value">0</div>
-                </div>
-                <button class="reset">Reset Game</button>
-                <!--<button class="settings">Settings</button>-->
-                <div class="aboutMe"><span>About</span></div>
-            </div>
-        </div>
-        <div id="game-area">
-        </div>
-    </div>
-    <!--<div class="settingsModal">-->
-        <!--<div class="settingsContent">-->
-            <!--<span class="close">&times;</span>-->
-            <!--<p>Lorem Ipsum</p>-->
-            <!--<button class="closeModal">Close</button>-->
-        <!--</div>-->
-    <!--</div>-->
-    <div class="aboutMeModal">
-        <div class="aboutMeContent">
-            <span class="close">&times;</span>
-            <img src="images/cupheadTheMan.gif" alt="picture of paul">
-            <h3>About Me</h3>
-            <p>Hi, my name is Paul and I'm a Web Developer from Southern California. <br>
-                The skills I needed to create this game include: <br>
-                <span class="skills">HTML, CSS, Javascript, and jQuery</span>
-            </p>
-            <h3>About The Game</h3>
-            <p>This is a memory match game with a theme based the on
-                best selling video game Cuphead developed by StudioMDHR.</p>
-            <hr>
-            <p>lorem ipsum</p>
-            <!--some links here later-->
-        </div>
-    </div>
-    <div class="winnerModal">
-        <div class="winnerContent">
-            <p>Winner!</p>
-        </div>
-    </div>
-    <!--<div class="startModal">-->
-        <!--<div class="startContent">-->
-            <!--<span class="close">&times;</span>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<button class="closeModal">Close</button>-->
-        <!--</div>-->
-    <!--</div>-->
-    <div class="screenTooSmall">
-        <div class="brokenContent">
-            <p>MOBILE DEVICES ROTATE TO LANDSCAPE MODE!</p>
-        </div>
-    </div>
+<section class="make-center">
+    <input type="text" id="room-id" value="abcdef" autocorrect=off autocapitalize=off size=20>
+    <button id="open-room">Open Room</button>
+
+    <div id="videos-container"></div>
+</section>
+<script>
+    var connection = new RTCMultiConnection();
+
+    // by default, socket.io server is assumed to be deployed on your own URL
+    // connection.socketURL = '/';
+    //
+    // comment-out below line if you do not have your own socket.io server
+    connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+
+
+    connection.socketMessageEvent = 'video-conference-demo';
+
+    connection.session = {
+        audio: true,
+        video: true
+    };
+
+    connection.sdpConstraints.mandatory = {
+        OfferToReceiveAudio: true,
+        OfferToReceiveVideo: true
+    };
+
+    connection.videosContainer = document.getElementById('videos-container');
+
+    document.getElementById('open-room').onclick = function() {
+        connection.join('blahblah')
+    }
+</script>
+
 </body>
 </html>
