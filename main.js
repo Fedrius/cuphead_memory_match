@@ -1,4 +1,4 @@
-$(document).ready(initializeApp);
+document.addEventListener('DOMContentLoaded', initializeApp);
 
 let memoryGame = null;
 
@@ -48,7 +48,8 @@ class MemoryGame{
     }
 
     buttonAndModalClickHandlers(){
-        $('.reset').on('click', ()=>this.resetButton());
+        document.getElementById('reset').addEventListener('click', ()=>this.resetButton());
+        // $('.reset').on('click', ()=>this.resetButton());
         $('.winnerModal').on('click', ()=>this.hideWinner());
         $(window).keydown(()=>{
             $('.winnerModal').fadeOut(500);
