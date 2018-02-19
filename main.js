@@ -49,13 +49,16 @@ class MemoryGame{
 
     buttonAndModalClickHandlers(){
         document.getElementById('reset').addEventListener('click', ()=>this.resetButton());
-        // $('.reset').on('click', ()=>this.resetButton());
+
         $('.winnerModal').on('click', ()=>this.hideWinner());
+
         $(window).keydown(()=>{
             $('.winnerModal').fadeOut(500);
             $('.aboutMeModal').fadeOut(500);
         });
+
         $('.aboutMe>span').on('click', ()=>this.showAboutMe());
+
         $('.close').on('click', ()=>this.hideAboutMe());
     }
 
@@ -128,7 +131,7 @@ class MemoryGame{
             let newDiv = $('<div>',{
                 class: 'card hover'
             });
-            let newFront = $('<img>').addClass('front').attr('src','images/' + this.randomCardArray[randomizedCardIndex]);
+            let newFront = $('<img>').addClass('front').attr('src',`images/${this.randomCardArray[randomizedCardIndex]}`);
             let newBack = $('<img>').addClass('back').attr('src','images/' + this.cupheadOrMugmanCard[cupmanOrMugmanIndex]);
             this.randomCardArray.splice(randomizedCardIndex, 1);
 
