@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Memory Match</title>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Source+Sans+Pro" rel="stylesheet">
-    <script src="jquery-3.2.1.min.js"></script>
+    <!--<script src="jquery-3.2.1.min.js"></script>-->
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,35 +27,26 @@
                     <div class="value">0</div>
                 </div>
                 <button id="reset">Reset Game</button>
-                <!--<button class="settings">Settings</button>-->
-                <div class="aboutMe"><span>About</span></div>
+                <div class="aboutMe"><span id="aboutBtn">About</span></div>
             </div>
         </div>
-        <div id="game-area">
-        </div>
     </div>
-    <!--<div class="settingsModal">-->
-        <!--<div class="settingsContent">-->
-            <!--<span class="close">&times;</span>-->
-            <!--<p>Lorem Ipsum</p>-->
-            <!--<button class="closeModal">Close</button>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="aboutMeModal">
         <div class="aboutMeContent">
             <span class="close">&times;</span>
             <img src="images/cupheadTheMan.gif" alt="picture of paul">
-            <h3>About Me</h3>
-            <p>Hi, my name is Paul and I'm a Web Developer from Southern California. <br>
-                The skills I needed to create this game include: <br>
-                <span class="skills">HTML, CSS, Javascript, and jQuery</span>
+            <h3 class="aboutTitle">About Me</h3>
+            <p>Hi, my name is Paul and I'm a Web Developer from Southern California.
+                The technical skills used to create this app were
+                <span class="skills"> HTML5, CSS3, and Javascript</span>. It was also created with
+                the MVC Object Oriented Programming concept and no external CSS or JS libraries were
+                used.
             </p>
-            <h3>About The Game</h3>
-            <p>This is a memory match game with a theme based the on
-                best selling video game Cuphead developed by StudioMDHR.</p>
             <hr>
-            <p>lorem ipsum</p>
-            <!--some links here later-->
+            <h3 class="aboutTitle">About The Game</h3>
+            <p>This is a memory match game with a theme based the one of my favorite
+                video games called Cuphead which was developed by StudioMDHR.
+            All image content belong to the awesome artists and developers of StudioMDHR.</p>
         </div>
     </div>
     <div class="winnerModal">
@@ -63,16 +54,6 @@
             <p>Winner!</p>
         </div>
     </div>
-    <!--<div class="startModal">-->
-        <!--<div class="startContent">-->
-            <!--<span class="close">&times;</span>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<p>Some text in the Modal..</p>-->
-            <!--<button class="closeModal">Close</button>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="screenTooSmall">
         <div class="brokenContent">
             <p>MOBILE DEVICES ROTATE TO LANDSCAPE MODE! <br>
