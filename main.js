@@ -1,14 +1,74 @@
-document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener('DOMContentLoaded', initializeGame);
 
 let memoryGame = null;
 
-function initializeApp(){
+function initializeGame(){
     memoryGame = new MemoryGame();
     memoryGame.init();
 }
 
-class MemoryGame{
+class MemoryGame {
     constructor(){
+        this.model = null;
+        this.view = null;
+    }
+
+    init(){
+        this.model = new Model(this);
+        this.view = new View(this);
+        this.view.init();
+    }
+
+    reset(){
+        this.model.reset();
+        this.view.reset();
+    }
+
+    cardClicked(event){
+        let matchCard = event.currentTarget;
+        let frontCard = event.currentTarget.firstChild;
+
+        matchCard.classList.toggle('transformBack');
+        matchCard.classList.toggle('hover');
+
+        if (this.model.firstCardClicked === null){
+            this.model.firstCardClicked = frontCard.getAttribute('src');
+            this.view.toggleClickOnOff(event.currentTarget);
+            this.model.storedCard = matchCard;
+            return;
+        }
+
+        if (this.model.firstCardClicked !== null){
+            this.model.attempts++;
+            this.view.displayStats();
+            this.model.secondCardClicked = frontCard.getAttribute('src');
+
+            if (this.model.secondCardClicked === this.model.firstCardClicked) {
+                this.model.matchCounter++;
+                this.model.matches++;
+                this.view.displayStats();
+                this.view.toggleClickOnOff(event.currentTarget);
+                this.model.storedCard = null;
+                this.model.firstCardClicked = null;
+                this.model.secondCardClicked = null;
+                if (this.model.matchCounter === this.model.totalPossibleMatches) {
+                    let modal = document.getElementsByClassName('winnerModal')[0];
+                    this.view.toggleModal(modal);
+                    document.getElementById('reset').innerText = 'Play Again!';
+                }
+            } else {
+                this.view.removeCardClickHandler();
+                this.model.setTimer(event.currentTarget);
+                this.model.firstCardClicked = null;
+                this.model.secondCardClicked = null;
+            }
+        }
+    }
+}
+
+class Model {
+    constructor(controller){
+        this.controller = controller;
         this.firstCardClicked = null;
         this.secondCardClicked = null;
         this.storedCard = null;
@@ -19,6 +79,42 @@ class MemoryGame{
         this.attempts = 0;
         this.accuracy = 0 + '.00%';
         this.gamesPlayed = 0;
+    }
+
+    reset(){
+        this.storedCard = null;
+        this.firstCardClicked = null;
+        this.secondCardClicked = null;
+        this.gamesPlayed++;
+        this.matchCounter = 0;
+        this.matches = 0;
+        this.attempts = 0;
+        this.accuracy = 0 + '.00%';
+        this.clearTimeOut()
+    }
+
+    setTimer(card){
+        let gameObject = this;
+        this.setTimeOutTimer = setTimeout(function(){
+            gameObject.storedCard.classList.toggle('transformBack');
+            gameObject.storedCard.classList.toggle('hover');
+            card.classList.toggle('transformBack');
+            card.classList.toggle('hover');
+
+            gameObject.controller.view.applyCardClickHandler();
+            gameObject.controller.view.toggleClickOnOff(gameObject.storedCard);
+            gameObject.storedCard = null;
+        }, 1000);
+    }
+
+    clearTimeOut(){
+        clearTimeout(this.setTimeOutTimer);
+    }
+}
+
+class View {
+    constructor(controller){
+        this.controller = controller;
         this.randomCardArray = ['Blind_Specter.png',
             'Cagney_carnation_2.png',
             'Cala_maria.png',
@@ -37,15 +133,23 @@ class MemoryGame{
             'KingTheDice.jpg',
             'Match.png',
             'Psycarrot_brain_minding.png'];
-        //set it to a variable because there were issues removing the event listener
-        this.cardHandler = this.cardClicked.bind(this);
+        this.cardHandler = this.controller.cardClicked.bind(controller);
     }
 
     init(){
         this.createCards();
-        this.applyCardClickHandler();
         this.buttonAndModalClickHandlers();
         this.displayStats();
+    }
+
+    reset(){
+        let container = document.getElementsByClassName('container');
+        let gameArea = document.getElementById('game-area');
+        container[0].removeChild(gameArea);
+        document.getElementById('reset').innerText = 'Reset Game';
+
+        this.displayStats();
+        this.createCards();
     }
 
     buttonAndModalClickHandlers(){
@@ -53,18 +157,9 @@ class MemoryGame{
         let aboutModal = document.getElementsByClassName('aboutMeModal')[0];
 
         winModal.addEventListener('click', ()=>this.toggleModal(winModal));
-        document.getElementById('reset').addEventListener('click', ()=>this.resetButton());
+        document.getElementById('reset').addEventListener('click', ()=>this.controller.reset());
         document.getElementById('aboutBtn').addEventListener('click', ()=>this.toggleModal(aboutModal));
         document.getElementsByClassName('close')[0].addEventListener('click', ()=>this.toggleModal(aboutModal));
-
-        // $(window).keydown(()=>{
-        //     $('.winnerModal').fadeOut(500);
-        //     $('.aboutMeModal').fadeOut(500);
-        // });
-    }
-
-    toggleModal(modal){
-        modal.classList.toggle('showModal')
     }
 
     applyCardClickHandler(){
@@ -85,46 +180,11 @@ class MemoryGame{
         card.classList.toggle('disableClick');
     }
 
-    clearTimeOut(){
-        clearTimeout(this.setTimeOutTimer);
-    }
-
-    displayStats(){
-        let stats = document.getElementsByClassName('value');
-        stats[0].innerText = this.gamesPlayed;
-        stats[1].innerText = this.attempts;
-
-        if(this.attempts > 0){
-            this.accuracy = ((this.matches / this.attempts) * 100).toFixed(2) + '%';
-        }
-        stats[2].innerText = this.accuracy;
-    }
-
-    resetStats(){
-        this.storedCard = null;
-        this.firstCardClicked = null;
-        this.secondCardClicked = null;
-        this.gamesPlayed++;
-        this.matchCounter = 0;
-        this.matches = 0;
-        this.attempts = 0;
-        this.accuracy = 0 + '.00%';
-        this.displayStats();
-    }
-
-    resetButton(){
-        let container = document.getElementsByClassName('container');
-        let gameArea = document.getElementById('game-area');
-        container[0].removeChild(gameArea);
-        document.getElementById('reset').innerText = 'Reset Game';
-
-        this.clearTimeOut();
-        this.resetStats();
-        this.createCards();
+    toggleModal(modal){
+        modal.classList.toggle('showModal')
     }
 
     createCards(){
-        //reference variable
         let randomCards = this.randomCardArray;
         let gameArea = document.createElement('div');
         gameArea.id = 'game-area';
@@ -157,58 +217,14 @@ class MemoryGame{
         document.getElementsByClassName('container')[0].appendChild(gameArea);
     }
 
-    cardClicked(event){
-        let matchCard = event.currentTarget;
-        let frontCard = event.currentTarget.firstChild;
+    displayStats(){
+        let stats = document.getElementsByClassName('value');
+        stats[0].innerText = this.controller.model.gamesPlayed;
+        stats[1].innerText = this.controller.model.attempts;
 
-        matchCard.classList.toggle('transformBack');
-        matchCard.classList.toggle('hover');
-
-        if (this.firstCardClicked === null){
-            this.firstCardClicked = frontCard.getAttribute('src');
-            this.toggleClickOnOff(event.currentTarget);
-            this.storedCard = matchCard;
-            return;
+        if(this.controller.model.attempts > 0){
+            this.controller.model.accuracy = ((this.controller.model.matches / this.controller.model.attempts) * 100).toFixed(2) + '%';
         }
-
-        if (this.firstCardClicked !== null){
-            this.attempts++;
-            this.displayStats();
-            this.secondCardClicked = frontCard.getAttribute('src');
-
-            if (this.secondCardClicked === this.firstCardClicked) {
-                this.matchCounter++;
-                this.matches++;
-                this.displayStats();
-                this.toggleClickOnOff(event.currentTarget);
-                this.storedCard = null;
-                this.firstCardClicked = null;
-                this.secondCardClicked = null;
-                if (this.matchCounter === this.totalPossibleMatches) {
-                    let modal = document.getElementsByClassName('winnerModal')[0];
-                    this.toggleModal(modal);
-                    document.getElementById('reset').innerText = 'Play Again!';
-                }
-            } else {
-                this.removeCardClickHandler();
-                this.setTimer(event.currentTarget);
-                this.firstCardClicked = null;
-                this.secondCardClicked = null;
-            }
-        }
-    }
-
-    setTimer(card){
-        let gameObject = this;
-        this.setTimeOutTimer = setTimeout(function(){
-            gameObject.storedCard.classList.toggle('transformBack');
-            gameObject.storedCard.classList.toggle('hover');
-            card.classList.toggle('transformBack');
-            card.classList.toggle('hover');
-
-            gameObject.applyCardClickHandler();
-            gameObject.toggleClickOnOff(gameObject.storedCard);
-            gameObject.storedCard = null;
-        }, 1000);
+        stats[2].innerText = this.controller.model.accuracy;
     }
 }
