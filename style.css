@@ -144,6 +144,17 @@ h1 {
     -o-transform: perspective( 800px ) rotateY( 180deg );
 }
 
+.matchedCardGlow {
+    -webkit-animation-name: cardGlow;
+    -webkit-animation-duration: 2s;
+    animation-name: cardGlow;
+    animation-duration: 2s;
+}
+
+@keyframes cardGlow {
+    50% {box-shadow: 0px 0px 19px 3px rgba(45,189,38,1);}
+}
+
 .disableClick {
     pointer-events: none;
 }
