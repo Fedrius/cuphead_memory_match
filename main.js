@@ -44,6 +44,8 @@ class MemoryGame {
             this.model.secondCardClicked = frontCard.getAttribute('src');
 
             if (this.model.secondCardClicked === this.model.firstCardClicked) {
+                this.model.storedCard.firstChild.classList.add('matchedCardGlow');
+                frontCard.classList.add('matchedCardGlow');
                 this.model.matchCounter++;
                 this.model.matches++;
                 this.view.displayStats();
