@@ -76,7 +76,7 @@ class Model {
         this.storedCard = null;
         this.setTimeOutTimer = null;
         this.matchCounter = 0;
-        this.totalPossibleMatches = 9;
+        this.totalPossibleMatches = 10;
         this.matches = 0;
         this.attempts = 0;
         this.accuracy = 0 + '.00%';
@@ -134,6 +134,8 @@ class View {
             'Honeybottoms.jpg',
             'KingTheDice.jpg',
             'Match.png',
+            'Psycarrot_brain_minding.png',
+            'Psycarrot_brain_minding.png',
             'Psycarrot_brain_minding.png'];
         this.cardHandler = this.controller.cardClicked.bind(controller);
     }
