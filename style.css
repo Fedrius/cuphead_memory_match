@@ -14,16 +14,9 @@ body {
     cursor: pointer;
 }
 
-
 .hideOnMobile {
     display: none;
 }
-
-
-/* .container {
-    width: 92vw;
-    margin: 5px auto;
-} */
 
 h1 {
     font-size: 2em;
@@ -35,11 +28,22 @@ h1 {
 
 .statsContainerMobile {
     display: flex;
-    align-content: center
+    padding: 8px 0;
+
+    border: 2px solid black;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 
+                0 6px 6px rgba(0,0,0,0.23);
 }
 
-.statsContainerMobile .games-played {
+.statsContainerMobile .games-played,
+.statsContainerMobile .attempts,
+.statsContainerMobile .accuracy {
+    flex-grow: 1;
+}
 
+.label, .value {
+    text-align: center;
 }
 
 /* .statsContainer {
@@ -308,15 +312,22 @@ hr {
 
 } 
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
+    .statsContainerMobile {
+        width: 50%;
+        
+    }
+    
+    #game-area {
+        width: 90%;
+    }
 
-
-
+    .card {
+        width: 23%;
+    }
 } 
 
-@media screen and (min-width: 1025px) {
-
-
+@media screen and (min-width: 1024px) {
 
 } 
 
