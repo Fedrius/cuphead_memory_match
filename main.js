@@ -76,7 +76,7 @@ class Model {
         this.storedCard = null;
         this.setTimeOutTimer = null;
         this.matchCounter = 0;
-        this.totalPossibleMatches = 9;
+        this.totalPossibleMatches = 10;
         this.matches = 0;
         this.attempts = 0;
         this.accuracy = 0 + '.00%';
@@ -121,20 +121,23 @@ class View {
             'Cagney_carnation_2.png',
             'Cala_maria.png',
             'Croak.png',
-            'Devil.png',
-            'Honeybottoms.jpg',
-            'KingTheDice.jpg',
+            'bonbon.png',
+            'Honeybottoms.jpeg',
+            'KingTheDice.jpeg',
             'Match.png',
             'Psycarrot_brain_minding.png',
+            'brineybeard.png',
             'Blind_Specter.png',
             'Cagney_carnation_2.png',
             'Cala_maria.png',
             'Croak.png',
-            'Devil.png',
-            'Honeybottoms.jpg',
-            'KingTheDice.jpg',
+            'bonbon.png',
+            'Honeybottoms.jpeg',
+            'KingTheDice.jpeg',
             'Match.png',
-            'Psycarrot_brain_minding.png'];
+            'Psycarrot_brain_minding.png',
+            'brineybeard.png'];
+
         this.cardHandler = this.controller.cardClicked.bind(controller);
     }
 
