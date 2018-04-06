@@ -121,9 +121,7 @@ h1 {
 .aboutMe>span {
     color: darkcyan;
 }
-.showModal {
-    display: block;
-}
+
 
 
 
@@ -168,7 +166,7 @@ hr {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 .winnerModal {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -195,7 +193,7 @@ hr {
 .winnerContent>p {
     color: rgb(255, 211, 52);
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
-    font-size: 2.5em;
+    font-size: 7vmin;
     border-radius: 10px;
     margin-bottom: 35px;
 }
@@ -210,7 +208,9 @@ hr {
     text-decoration: none;
     cursor: pointer;
 }
-
+.showModal {
+    display: block;
+}
 
 
 @media screen and (min-width: 376px) {
@@ -232,6 +232,12 @@ hr {
 
     .card {
         width: 23%;
+    }
+
+    .winnerContent {
+        margin: 30% auto;
+        width: 90%;
+        height: 30%;
     }
 }
 
@@ -256,6 +262,12 @@ hr {
     .card {
         width: 23%;
     }
+
+    .winnerContent {
+        margin: 15% auto;
+        width: 90%;
+        height: 50%;
+    }
 }
 
 @media screen and (min-width: 900px) {
@@ -265,6 +277,12 @@ hr {
 
     .card {
         width: 18%;
+    }
+
+    .winnerContent {
+        margin: 15% auto;
+        width: 90%;
+        height: 60%;
     }
 }
 
@@ -313,5 +331,11 @@ hr {
 
     .card {
         width: 12%;
+    }
+
+    .winnerContent {
+        margin: 8% auto;
+        width: 50%;
+        height: 55%;
     }
 }
