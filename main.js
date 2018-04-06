@@ -121,22 +121,23 @@ class View {
             'Cagney_carnation_2.png',
             'Cala_maria.png',
             'Croak.png',
-            'Devil.png',
-            'Honeybottoms.jpg',
-            'KingTheDice.jpg',
+            'bonbon.png',
+            'Honeybottoms.jpeg',
+            'KingTheDice.jpeg',
             'Match.png',
             'Psycarrot_brain_minding.png',
+            'brineybeard.png',
             'Blind_Specter.png',
             'Cagney_carnation_2.png',
             'Cala_maria.png',
             'Croak.png',
-            'Devil.png',
-            'Honeybottoms.jpg',
-            'KingTheDice.jpg',
+            'bonbon.png',
+            'Honeybottoms.jpeg',
+            'KingTheDice.jpeg',
             'Match.png',
             'Psycarrot_brain_minding.png',
-            'Psycarrot_brain_minding.png',
-            'Psycarrot_brain_minding.png'];
+            'brineybeard.png'];
+      
         this.cardHandler = this.controller.cardClicked.bind(controller);
     }
 
