@@ -137,7 +137,7 @@ class View {
             'Match.png',
             'Psycarrot_brain_minding.png',
             'brineybeard.png'];
-
+      
         this.cardHandler = this.controller.cardClicked.bind(controller);
     }
 
