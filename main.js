@@ -56,7 +56,7 @@ class MemoryGame {
                 if (this.model.matchCounter === this.model.totalPossibleMatches) {
                     let modal = document.getElementsByClassName('winnerModal')[0];
                     this.view.toggleModal(modal);
-                    document.getElementById('reset').innerText = 'Play Again!';
+                    document.getElementById('reset').innerText = 'Replay';
                 }
             } else {
                 this.view.removeCardClickHandler();
@@ -151,7 +151,7 @@ class View {
         let container = document.getElementsByClassName('container');
         let gameArea = document.getElementById('game-area');
         container[0].removeChild(gameArea);
-        document.getElementById('reset').innerText = 'Reset Game';
+        document.getElementById('reset').innerText = 'Reset';
 
         this.displayStats();
         this.createCards();
