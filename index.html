@@ -12,34 +12,20 @@
     <div class="container">
         <h1>Cuphead Memory Match</h1>
         <div class='statsContainerMobile'>
-            <div class="games-played">
-                <div class="label">Games Played</div>
-                <div class="value">0</div>
-            </div>
             <div class="attempts">
                 <div class="label">attempts</div>
+                <div class="value">0</div>
+            </div>
+            <div class="games-played">
+                <div class="label">Games Played</div>
                 <div class="value">0</div>
             </div>
             <div class="accuracy">
                 <div class="label">accuracy</div>
                 <div class="value">0</div>
             </div>
-        </div>
-        <div class="statsContainer hideOnMobile">
-            <div class="insideStatsContainer">
-                <div class="games-played">
-                    <div class="label">Games Played</div>
-                    <div class="value">0</div>
-                </div>
-                <div class="attempts">
-                    <div class="label">attempts</div>
-                    <div class="value">0</div>
-                </div>
-                <div class="accuracy">
-                    <div class="label">accuracy</div>
-                    <div class="value">0</div>
-                </div>
-                <button id="reset">Reset Game</button>
+            <div class="btnContainer">
+                <button id="reset">Reset</button>
                 <div class="aboutMe"><span id="aboutBtn">About</span></div>
             </div>
         </div>
@@ -47,7 +33,7 @@
     <div class="aboutMeModal">
         <div class="aboutMeContent">
             <span class="close">&times;</span>
-            <img src="images/cupheadTheMan.gif" alt="picture of paul">
+            <img class="hideImg" src="images/cupheadTheMan.gif" alt="picture of paul">
             <h3 class="aboutTitle">About Me</h3>
             <p>Hi, my name is Paul and I'm a Web Developer from Torrance, California.
                 The technical skills used to create this app were

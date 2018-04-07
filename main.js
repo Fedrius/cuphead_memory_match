@@ -55,8 +55,8 @@ class MemoryGame {
                 this.model.secondCardClicked = null;
                 if (this.model.matchCounter === this.model.totalPossibleMatches) {
                     let modal = document.getElementsByClassName('winnerModal')[0];
-                    this.view.toggleModal(modal);
-                    document.getElementById('reset').innerText = 'Play Again!';
+                    setTimeout(()=>{this.view.toggleModal(modal)}, 1800);
+                    document.getElementById('reset').innerText = 'Replay';
                 }
             } else {
                 this.view.removeCardClickHandler();
@@ -151,7 +151,7 @@ class View {
         let container = document.getElementsByClassName('container');
         let gameArea = document.getElementById('game-area');
         container[0].removeChild(gameArea);
-        document.getElementById('reset').innerText = 'Reset Game';
+        document.getElementById('reset').innerText = 'Reset';
 
         this.displayStats();
         this.createCards();
@@ -162,9 +162,9 @@ class View {
         let aboutModal = document.getElementsByClassName('aboutMeModal')[0];
 
         winModal.addEventListener('click', ()=>this.toggleModal(winModal));
+        aboutModal.addEventListener('click', ()=>this.toggleModal(aboutModal));
         document.getElementById('reset').addEventListener('click', ()=>this.controller.reset());
         document.getElementById('aboutBtn').addEventListener('click', ()=>this.toggleModal(aboutModal));
-        document.getElementsByClassName('close')[0].addEventListener('click', ()=>this.toggleModal(aboutModal));
     }
 
     applyCardClickHandler(){

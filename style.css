@@ -13,178 +13,122 @@ body {
 #reset:hover {
     cursor: pointer;
 }
-
 .hideOnMobile {
     display: none;
 }
-
 h1 {
-    font-size: 2em;
+    font-size: 7.5vmin;
     letter-spacing: 1px;
     text-align: center;
     margin: 10px 0;
     text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
-    letter-spacing: 2px;
 }
-
 .statsContainerMobile {
     display: flex;
+    margin: 0 auto;
+    font-size: 4vmin;
     padding: 8px 0;
-
     border: 2px solid black;
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 
                 0 6px 6px rgba(0,0,0,0.23);
 }
-
 .statsContainerMobile .games-played,
 .statsContainerMobile .attempts,
 .statsContainerMobile .accuracy {
     flex-grow: 1;
 }
-
 .label, .value {
     text-align: center;
 }
-
-/* .statsContainer {
+.btnContainer {
     text-align: center;
-    width: 15%;
-    margin-top: 20px;
-    float: left;
-} */
-
-/* .insideStatsContainer {
-    border: 2px solid black;
-    border-radius: 8px;
-    box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
-    background-color: rgb(255, 211, 52);
-} */
-
-/* .label {
-    color: black;
+    padding-left: 10px;
+    padding-right: 5px;
 }
-
-.games-played, .attempts, .accuracy {
-    font-size: 1.4em;
-}
-
-.games-played {
-    margin-top: 15px;
-}
-
-.attempts {
-    margin-top: 10px;
-}
-
-.accuracy {
-    margin-top: 10px;
-}
-
 #reset {
-    margin-top: 15px;
-    font-size: 1.1em;
     border-radius: 10px;
+    font-size: 4vmin;
+    padding: 4px 6px;
 }
-
-.settings {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 1.1em;
-    border-radius: 10px;
-} */
-
-.aboutMe {
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
 #game-area {
-    /* height: 80vh; */
     width: 100%;
     margin: 20px auto;
     margin-bottom: 0;
-    /* margin-left: 20px; */
-    /* float: left; */
     display: flex;
     flex-wrap: wrap;
-    /* align-content: flex-start; */
 }
-
 .card {
-    /* height: 30%; */
     width: 23%;
     margin: 0 1%;
-    /* display: flex;
-    justify-content: space-around; */
-    /* margin-right: 20px; */
     position: relative;
     margin-bottom: 15px;
     border-radius: 8px;
-
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -o-transform-style: preserve-3d;
     transform-style: preserve-3d;
-
     -webkit-transition: -webkit-transform 1s;
     -moz-transition: -moz-transform 1s;
     -o-transition: -o-transform 1s;
     transition: transform .3s linear 0s;
-
 }
-
 .hover:hover {
     cursor: pointer;
     transform:scale(1.05, 1.05);
     transition: transform .2s linear 0s;
 }
-
 .front, .back {
     width: 100%;
     border: 2px solid black;
     border-radius: 8px;
     box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
-
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -o-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
 .front {
     position: absolute;
     top: 50%;
-    
     transform: perspective( 800px ) rotateY( 180deg );
     -webkit-transform: perspective( 800px ) rotateY( 180deg ) translateY(-50%);;
     -moz-transform: perspective( 800px ) rotateY( 180deg );
     -o-transform: perspective( 800px ) rotateY( 180deg );
 }
-
 .transformBack {
     transform: perspective( 800px ) rotateY( 180deg );
     -webkit-transform: perspective( 800px ) rotateY( 180deg );
     -moz-transform: perspective( 800px ) rotateY( 180deg );
     -o-transform: perspective( 800px ) rotateY( 180deg );
 }
-
 .matchedCardGlow {
     -webkit-animation-name: cardGlow;
     -webkit-animation-duration: 2s;
     animation-name: cardGlow;
     animation-duration: 2s;
 }
-
 @keyframes cardGlow {
     50% {box-shadow: 0px 0px 19px 3px rgba(45,189,38,1);}
 }
-
 .disableClick {
     pointer-events: none;
 }
+.aboutMe>span:hover {
+    cursor: pointer;
+    color: cadetblue;
+}
+.aboutMe>span {
+    color: darkcyan;
+}
+.hideImg {
+    display: none;
+}
+
+
 
 .aboutMeModal {
+    font-size: 3.5vmin;
     display: none;
     position: fixed;
     z-index: 1;
@@ -202,33 +146,28 @@ h1 {
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    /*width: 50%;*/
     border-radius: 8px;
     box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
 }
-
 .aboutTitle {
     margin-top: 10px;
     text-align: center;
 }
-
 .aboutMeContent>img {
     float: left;
     width: 20%;
     margin-right: 20px;
     margin-bottom: 10px;
 }
-
 .skills {
     font-weight: bold;
 }
-
 hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
-
 .winnerModal {
     display: none;
     position: fixed;
@@ -241,7 +180,6 @@ hr {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
-
 .winnerContent {
     display: flex;
     justify-content: center;
@@ -249,76 +187,48 @@ hr {
     background: url(images/winnerGif.gif) no-repeat center;
     background-size: cover;
     margin: 50% auto;
-    /* padding: 20px; */
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
     width: 320px;
     height: 200px;
 }
-
-/* .winnerContent {
-    display: flex;
-    justify-content: center;
-    align-items:flex-end;
-    background: url(images/winnerGif.gif) no-repeat center;
-    background-size: cover;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 10px;
-    box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
-    width: 50%;
-    height: 50%;
-} */
-
 .winnerContent>p {
     color: rgb(255, 211, 52);
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
-    font-size: 2.5em;
+    font-size: 7vmin;
     border-radius: 10px;
     margin-bottom: 35px;
 }
-
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
-
 .close:hover, .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
-
-.aboutMe>span:hover {
-    cursor: pointer;
-    color: cadetblue;
-}
-
-.aboutMe>span {
-    color: darkcyan;
-}
-
 .showModal {
     display: block;
 }
 
 
 @media screen and (min-width: 376px) {
-
-
-
-} 
-
-@media screen and (min-width: 768px) {
-    .statsContainerMobile {
-        width: 50%;
-        
+    h1 {
+        font-size: 7vmin;
     }
-    
+
+    .statsContainerMobile {
+        width: 86%;
+    }
+
+    #reset, .statsContainerMobile {
+        font-size: 3.5vmin;
+    }
+
     #game-area {
         width: 90%;
     }
@@ -326,72 +236,125 @@ hr {
     .card {
         width: 23%;
     }
-} 
 
-@media screen and (min-width: 1024px) {
-
-} 
-
-/*Media Queries*/
-/* @media screen and (max-width: 1109px) and (min-width: 821px){
-    .games-played, .attempts, .accuracy, .aboutMe {
-        font-size: 1em;
+    .winnerContent {
+        margin: 30% auto;
+        width: 90%;
+        height: 30%;
     }
+
+    .aboutMeModal {
+        font-size: 3vmin;
+    }
+
+    .aboutMeContent {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 7vmin;
+    }
+
+    .statsContainerMobile {
+        width: 70%;
+
+    }
+
+    #reset, .statsContainerMobile {
+        font-size: 3vmin;
+    }
+
     #game-area {
-        width: 82%;
-        margin-left: 10px;
+        width: 90%;
     }
-    h1{
-        font-size: 2.5em;
-    }
-    #reset, .settings {
-        font-size: .8em;
-    }
-    .card {
-        height: 29%;
-        width: 13.8%;
-        margin-right: 15px;
-    }
-}
 
-@media screen and (max-width: 820px) {
-    .container {
-        width: 100%;
-    }
-    .statsContainer {
-        width: 15%;
-    }
-    #game-area {
-        width: 82%;
-        margin-left: 10px;
-    }
-    h1{
-        font-size: 2em;
-        margin: 0;
-    }
-    .games-played, .attempts, .accuracy, .aboutMe {
-        font-size: .8em;
-    }
-    #reset, .settings {
-        font-size: .6em;
-    }
     .card {
-        height: 29%;
-        width: 13.8%;
-        margin-right: 15px;
+        width: 23%;
     }
-}
 
-@media screen and (max-width: 652px) {
-    .card {
-        height: 28%;
-        width: 12.8%;
-        margin-right: 15px;
+    .winnerContent {
+        margin: 15% auto;
+        width: 90%;
+        height: 50%;
     }
-}
 
-@media screen and (max-width: 639px) {
-    .screenTooSmall {
+    .hideImg {
         display: block;
     }
-} */
+
+    .aboutMeModal {
+        font-size: 2.5vmin;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    #game-area {
+        width: 90%;
+    }
+
+    .card {
+        width: 18%;
+    }
+
+    .winnerContent {
+        margin: 15% auto;
+        width: 90%;
+        height: 60%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    h1 {
+        margin-top: 15px;
+    }
+
+    .statsContainerMobile {
+        width: 12%;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        margin-top: 14px;
+        margin-left: 2%;
+        padding: 8px 0;
+        border: 2px solid black;
+        border-radius: 8px;
+        box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75);
+    }
+
+    #reset, .statsContainerMobile {
+        font-size: 1.2rem;
+    }
+
+    #reset {
+        margin-bottom: 2%;
+    }
+
+    .attempts {
+        margin-top: 5%;
+    }
+
+    .btnContainer {
+        margin-bottom: 5%;
+        padding: 0;
+    }
+
+    .games-played, .attempts, .accuracy {
+        margin-bottom: 7%;
+    }
+
+    #game-area {
+        width: 85%;
+    }
+
+    .card {
+        width: 12%;
+    }
+
+    .winnerContent {
+        margin: 8% auto;
+        width: 50%;
+        height: 55%;
+    }
+}
