@@ -55,8 +55,8 @@ class MemoryGame {
                 this.model.secondCardClicked = null;
                 if (this.model.matchCounter === this.model.totalPossibleMatches) {
                     let modal = document.getElementsByClassName('winnerModal')[0];
-                    this.view.toggleModal(modal);
-                    document.getElementById('reset').innerText = 'Play Again!';
+                    setTimeout(()=>{this.view.toggleModal(modal)}, 1800);
+                    document.getElementById('reset').innerText = 'Replay';
                 }
             } else {
                 this.view.removeCardClickHandler();
@@ -76,7 +76,7 @@ class Model {
         this.storedCard = null;
         this.setTimeOutTimer = null;
         this.matchCounter = 0;
-        this.totalPossibleMatches = 9;
+        this.totalPossibleMatches = 10;
         this.matches = 0;
         this.attempts = 0;
         this.accuracy = 0 + '.00%';
@@ -121,20 +121,23 @@ class View {
             'Cagney_carnation_2.png',
             'Cala_maria.png',
             'Croak.png',
-            'Devil.png',
-            'Honeybottoms.jpg',
-            'KingTheDice.jpg',
+            'bonbon.png',
+            'Honeybottoms.jpeg',
+            'KingTheDice.jpeg',
             'Match.png',
             'Psycarrot_brain_minding.png',
+            'brineybeard.png',
             'Blind_Specter.png',
             'Cagney_carnation_2.png',
             'Cala_maria.png',
             'Croak.png',
-            'Devil.png',
-            'Honeybottoms.jpg',
-            'KingTheDice.jpg',
+            'bonbon.png',
+            'Honeybottoms.jpeg',
+            'KingTheDice.jpeg',
             'Match.png',
-            'Psycarrot_brain_minding.png'];
+            'Psycarrot_brain_minding.png',
+            'brineybeard.png'];
+      
         this.cardHandler = this.controller.cardClicked.bind(controller);
     }
 
@@ -148,7 +151,7 @@ class View {
         let container = document.getElementsByClassName('container');
         let gameArea = document.getElementById('game-area');
         container[0].removeChild(gameArea);
-        document.getElementById('reset').innerText = 'Reset Game';
+        document.getElementById('reset').innerText = 'Reset';
 
         this.displayStats();
         this.createCards();
@@ -159,9 +162,9 @@ class View {
         let aboutModal = document.getElementsByClassName('aboutMeModal')[0];
 
         winModal.addEventListener('click', ()=>this.toggleModal(winModal));
+        aboutModal.addEventListener('click', ()=>this.toggleModal(aboutModal));
         document.getElementById('reset').addEventListener('click', ()=>this.controller.reset());
         document.getElementById('aboutBtn').addEventListener('click', ()=>this.toggleModal(aboutModal));
-        document.getElementsByClassName('close')[0].addEventListener('click', ()=>this.toggleModal(aboutModal));
     }
 
     applyCardClickHandler(){
