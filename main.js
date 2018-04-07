@@ -55,7 +55,7 @@ class MemoryGame {
                 this.model.secondCardClicked = null;
                 if (this.model.matchCounter === this.model.totalPossibleMatches) {
                     let modal = document.getElementsByClassName('winnerModal')[0];
-                    this.view.toggleModal(modal);
+                    setTimeout(()=>{this.view.toggleModal(modal)}, 1800);
                     document.getElementById('reset').innerText = 'Replay';
                 }
             } else {
@@ -162,9 +162,9 @@ class View {
         let aboutModal = document.getElementsByClassName('aboutMeModal')[0];
 
         winModal.addEventListener('click', ()=>this.toggleModal(winModal));
+        aboutModal.addEventListener('click', ()=>this.toggleModal(aboutModal));
         document.getElementById('reset').addEventListener('click', ()=>this.controller.reset());
         document.getElementById('aboutBtn').addEventListener('click', ()=>this.toggleModal(aboutModal));
-        document.getElementsByClassName('close')[0].addEventListener('click', ()=>this.toggleModal(aboutModal));
     }
 
     applyCardClickHandler(){
