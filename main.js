@@ -224,8 +224,8 @@ class View {
 
     displayStats(){
         let stats = document.getElementsByClassName('value');
-        stats[0].innerText = this.controller.model.gamesPlayed;
-        stats[1].innerText = this.controller.model.attempts;
+        stats[1].innerText = this.controller.model.gamesPlayed;
+        stats[0].innerText = this.controller.model.attempts;
 
         if(this.controller.model.attempts > 0){
             this.controller.model.accuracy = ((this.controller.model.matches / this.controller.model.attempts) * 100).toFixed(2) + '%';
