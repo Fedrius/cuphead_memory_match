@@ -2,43 +2,43 @@ document.addEventListener('DOMContentLoaded', initializeGame);
 
 let memoryGame = null;
 
-function initializeGame(){
+function initializeGame() {
     memoryGame = new MemoryGame();
     memoryGame.init();
 }
 
 class MemoryGame {
-    constructor(){
+    constructor() {
         this.model = null;
         this.view = null;
     }
 
-    init(){
+    init() {
         this.model = new Model(this);
         this.view = new View(this);
         this.view.init();
     }
 
-    reset(){
+    reset() {
         this.model.reset();
         this.view.reset();
     }
 
-    cardClicked(event){
+    cardClicked(event) {
         let matchCard = event.currentTarget;
         let frontCard = event.currentTarget.firstChild;
 
         matchCard.classList.toggle('transformBack');
         matchCard.classList.toggle('hover');
 
-        if (this.model.firstCardClicked === null){
+        if (this.model.firstCardClicked === null) {
             this.model.firstCardClicked = frontCard.getAttribute('src');
             this.view.toggleClickOnOff(event.currentTarget);
             this.model.storedCard = matchCard;
             return;
         }
 
-        if (this.model.firstCardClicked !== null){
+        if (this.model.firstCardClicked !== null) {
             this.model.attempts++;
             this.view.displayStats();
             this.model.secondCardClicked = frontCard.getAttribute('src');
@@ -55,7 +55,9 @@ class MemoryGame {
                 this.model.secondCardClicked = null;
                 if (this.model.matchCounter === this.model.totalPossibleMatches) {
                     let modal = document.getElementsByClassName('winnerModal')[0];
-                    setTimeout(()=>{this.view.toggleModal(modal)}, 1800);
+                    setTimeout(() => {
+                        this.view.toggleModal(modal)
+                    }, 1800);
                     document.getElementById('reset').innerText = 'Replay';
                 }
             } else {
@@ -69,7 +71,7 @@ class MemoryGame {
 }
 
 class Model {
-    constructor(controller){
+    constructor(controller) {
         this.controller = controller;
         this.firstCardClicked = null;
         this.secondCardClicked = null;
@@ -83,7 +85,7 @@ class Model {
         this.gamesPlayed = 0;
     }
 
-    reset(){
+    reset() {
         this.storedCard = null;
         this.firstCardClicked = null;
         this.secondCardClicked = null;
@@ -95,9 +97,9 @@ class Model {
         this.clearTimeOut()
     }
 
-    setTimer(card){
+    setTimer(card) {
         let gameObject = this;
-        this.setTimeOutTimer = setTimeout(function(){
+        this.setTimeOutTimer = setTimeout(function () {
             gameObject.storedCard.classList.toggle('transformBack');
             gameObject.storedCard.classList.toggle('hover');
             card.classList.toggle('transformBack');
@@ -109,13 +111,13 @@ class Model {
         }, 1000);
     }
 
-    clearTimeOut(){
+    clearTimeOut() {
         clearTimeout(this.setTimeOutTimer);
     }
 }
 
 class View {
-    constructor(controller){
+    constructor(controller) {
         this.controller = controller;
         this.randomCardArray = ['Blind_Specter.png',
             'Cagney_carnation_2.png',
@@ -136,18 +138,19 @@ class View {
             'KingTheDice.jpeg',
             'Match.png',
             'Psycarrot_brain_minding.png',
-            'brineybeard.png'];
-      
+            'brineybeard.png'
+        ];
+
         this.cardHandler = this.controller.cardClicked.bind(controller);
     }
 
-    init(){
+    init() {
         this.createCards();
         this.buttonAndModalClickHandlers();
         this.displayStats();
     }
 
-    reset(){
+    reset() {
         let container = document.getElementsByClassName('container');
         let gameArea = document.getElementById('game-area');
         container[0].removeChild(gameArea);
@@ -157,39 +160,40 @@ class View {
         this.createCards();
     }
 
-    buttonAndModalClickHandlers(){
+    buttonAndModalClickHandlers() {
         let winModal = document.getElementsByClassName('winnerModal')[0];
         let aboutModal = document.getElementsByClassName('aboutMeModal')[0];
 
-        winModal.addEventListener('click', ()=>this.toggleModal(winModal));
-        aboutModal.addEventListener('click', ()=>this.toggleModal(aboutModal));
-        document.getElementById('reset').addEventListener('click', ()=>this.controller.reset());
-        document.getElementById('aboutBtn').addEventListener('click', ()=>this.toggleModal(aboutModal));
+        winModal.addEventListener('click', () => this.toggleModal(winModal));
+        aboutModal.addEventListener('click', () => this.toggleModal(aboutModal));
+        document.getElementById('reset').addEventListener('click', () => this.controller.reset());
+        document.getElementById('aboutBtn').addEventListener('click', () => this.toggleModal(aboutModal));
     }
 
-    applyCardClickHandler(){
+    applyCardClickHandler() {
         let cards = document.getElementsByClassName('card');
-        for(let cardIndex = 0; cardIndex < cards.length; cardIndex++){
+        for (let cardIndex = 0; cardIndex < cards.length; cardIndex++) {
             cards[cardIndex].addEventListener('click', this.cardHandler);
         }
     }
 
-    removeCardClickHandler(){
+    removeCardClickHandler() {
         let cards = document.getElementsByClassName('card');
-        for(let cardIndex = 0; cardIndex < cards.length; cardIndex++){
+        for (let cardIndex = 0; cardIndex < cards.length; cardIndex++) {
             cards[cardIndex].removeEventListener('click', this.cardHandler);
         }
     }
 
-    toggleClickOnOff(card){
+    toggleClickOnOff(card) {
         card.classList.toggle('disableClick');
     }
 
-    toggleModal(modal){
+    toggleModal(modal) {
         modal.classList.toggle('showModal')
+        document.body.classList.toggle('bodyOverflow');
     }
 
-    createCards(){
+    createCards() {
         let randomCards = this.randomCardArray;
         let gameArea = document.createElement('div');
         gameArea.id = 'game-area';
@@ -202,7 +206,7 @@ class View {
             randomCards[randomIndex] = temp;
         }
 
-        for(let cardIndex = 0; cardIndex < randomCards.length; cardIndex++){
+        for (let cardIndex = 0; cardIndex < randomCards.length; cardIndex++) {
             let cardDiv = document.createElement('div');
             cardDiv.classList.add('card', 'hover');
             cardDiv.addEventListener('click', this.cardHandler);
@@ -222,12 +226,12 @@ class View {
         document.getElementsByClassName('container')[0].appendChild(gameArea);
     }
 
-    displayStats(){
+    displayStats() {
         let stats = document.getElementsByClassName('value');
         stats[1].innerText = this.controller.model.gamesPlayed;
         stats[0].innerText = this.controller.model.attempts;
 
-        if(this.controller.model.attempts > 0){
+        if (this.controller.model.attempts > 0) {
             this.controller.model.accuracy = ((this.controller.model.matches / this.controller.model.attempts) * 100).toFixed(2) + '%';
         }
         stats[2].innerText = this.controller.model.accuracy;
