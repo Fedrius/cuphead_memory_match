@@ -37,6 +37,7 @@ h1 {
 .statsContainerMobile .attempts,
 .statsContainerMobile .accuracy {
     flex-grow: 1;
+    padding-top: 5px;
 }
 .label, .value {
     text-align: center;
@@ -50,6 +51,8 @@ h1 {
     border-radius: 10px;
     font-size: 4vmin;
     padding: 4px 6px;
+    padding-bottom: 0;
+    margin-bottom: 5px;
 }
 #game-area {
     width: 100%;
@@ -328,7 +331,7 @@ hr {
     }
 
     #reset {
-        margin-bottom: 2%;
+        margin-bottom: 4%;
     }
 
     .attempts {
@@ -342,6 +345,10 @@ hr {
 
     .games-played, .attempts, .accuracy {
         margin-bottom: 7%;
+    }
+
+    .value {
+        padding-top: 5px;
     }
 
     #game-area {
