@@ -1,4 +1,4 @@
-# Cuphead Memory Match
+# Cuphead Memory Match - No Longer Maintained
 
 ## Overview
 
