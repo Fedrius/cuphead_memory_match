@@ -10,3 +10,7 @@ accuracy of their choices.
 ### Technologies Used
 
 >HTML, CSS, Javascript, and the Google Fonts Library.
+
+### Preview
+
+>https://fedrius.github.io/cuphead_memory_match/
